@@ -19,12 +19,12 @@ The audience reads your messages on the big screen. Be clear, brief and calm. Co
    - **The job:** e.g. "Find which suburbs will outgrow their services"
    - **Success:** e.g. "Can say which three suburbs, and why, in five minutes"
 
-   This persona is the brief. Every later decision (extent, layers, symbols, labels, popups, theme, features, assistant suggestions) has to make sense for this person. If something only makes sense for someone else, it doesn't go in. Write it to `config.persona` as `who`, `context`, `job` and `success`. The app's "Built for" panel shows the first three. `success` isn't displayed: it records what the plan's criteria test.
+   This persona is the brief. Every later decision (extent, layers, symbols, labels, popups, theme, features) has to make sense for this person. If something only makes sense for someone else, it doesn't go in. Write it to `config.persona` as `who`, `context`, `job` and `success`. The app's "Built for" panel shows the first three. `success` isn't displayed: it records what the plan's criteria test.
 3. **Synthesise** in 6 lines or fewer:
    - the 3 to 4 most-asked-for datasets, matched to catalogue ids
    - the 2 to 3 must-do interactions
    - the look
-   - what the assistant should do
+   - what the room wants from AI, and what this build does instead (no in-app assistant: see below)
    - what you **won't** build, and why
 4. **Plan, with success criteria, and wait for approval.** Present a plan of 8 lines or fewer, starting with the persona, with 3 to 5 success criteria a person can check by looking at the app. For example:
    - "Opens on Melbourne's west with the zoning layer on"
@@ -91,7 +91,7 @@ Simple over clever, every time. If two approaches work, choose the one the perso
 - The interface should fade into the background: as few panels as the persona needs, and the most useful one open first.
 - **Theme:** `"light"`, plain white, is the default: keep it simple. Use `"dark"` only if the room clearly asks for an ops-centre look. For field crews in sunlight, keep it light, with the `"streets"` or `"topo"` basemap.
 - **Words:** labels people actually say, in sentence case. "Flood planning area", not "FLOOD_PLAN_AREA_V3". "Filter by suburb", not "Attribute filtering".
-- **Title and subtitle are short.** Keep the subtitle to 30 characters or fewer: a longer one pushes Share, the assistant and the theme toggle off a phone screen.
+- **Title and subtitle are short.** Keep the subtitle to 30 characters or fewer: a longer one pushes Share and the theme toggle off a phone screen.
 
 ### The map: let the data speak
 
@@ -133,7 +133,7 @@ The default popup, a table of raw field names and values with "Zoom to" undernea
 - **`fields`:** optional, at most 4 supporting facts, with human labels and formatted numbers. Hide fields that are empty.
 - **`chart`:** only when comparing 3 or more related values. Otherwise leave it out.
 - **Guard every null in Arcade** (`IsEmpty`), so a popup never says "null", "undefined" or "0 km²" for missing data.
-- Popup actions: only "Explain this" (the assistant). The default "Zoom to" is removed.
+- Popup actions: none. The default "Zoom to" is removed, and there's no assistant in this build.
 
 ### No AI slop
 
@@ -151,12 +151,12 @@ Never use any of these:
 
 Never use any government logo, coat of arms or typeface (NSW or Victorian): this is an Esri Australia demo, not a government product. If a sentence in the interface could appear in any app, rewrite it for this persona or delete it.
 
-## The in-app assistant
+## No in-app assistant in this build
 
-- Use `features.assistant`. It already does natural-language filtering and "Explain this" in popups, with validated SQL.
-- Configure it: `modes` and 3 or 4 `suggestions` written from the room's AI answers and catalogue fields that exist, e.g. "Show council areas in Victoria".
-- Don't change how it gets its key, its rate limits or its SQL validation.
-- Don't use the Maps SDK's AI components (`arcgis-assistant`). They need every user to sign in with an ArcGIS named-user account, and the workshop app is public. If the room asks for something only they can do, list it under "Not in this build" as "Map assistant with ArcGIS sign-in: needs named users".
+- **Keep `features.assistant: false`.** The workshop app is public, and a model key in a public app can be read by anyone, so this build has no AI assistant. `check.mjs` fails if it's switched on.
+- Don't use the Maps SDK's AI components (`arcgis-assistant`) either: they need every user to sign in with an ArcGIS named-user account.
+- Still use the room's AI answers. Where an answer can be met **without a model**, build that instead: "explain this feature" becomes a plain-English Arcade popup; "find it for me" becomes search plus a filter.
+- List what's left under "Not in this build" in one honest line, e.g. "AI assistant: needs a model service behind sign-in, not a public demo".
 
 ## Never
 

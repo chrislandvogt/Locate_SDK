@@ -75,11 +75,8 @@ export default {
     search: true, // address and place search
     filter: { layer: "abs-lga-2021", field: "state_name_2021", label: "State" },
     room: true, // "From the room": what the audience asked for
-    assistant: {
-      enabled: true,
-      modes: ["filter", "explain"],
-      suggestions: ["Show council areas in Victoria", "Which councils are shires?"],
-    },
+    // Off for the workshop: a public app can't hold a model key safely. Leave it off (see CLAUDE.md).
+    assistant: false,
     share: true, // copy a link to the current view
     locate: true, // "near me" button
   },

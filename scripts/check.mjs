@@ -30,6 +30,10 @@ const { default: config } = await import(pathToFileURL(path.join(app, "config.js
 for (const l of config.layers || []) if (!ids.has(l.id)) problems.push(`config.layers: "${l.id}" is not in catalogue.json`);
 const used = new Set((config.layers || []).map((l) => l.id));
 
+// No AI assistant in the public workshop app (no safe place for a model key). See CLAUDE.md.
+const assistant = config.features?.assistant;
+if (assistant && assistant.enabled !== false) problems.push("features.assistant must stay false for the workshop app (CLAUDE.md: No in-app assistant)");
+
 // No stock styling: every feature layer needs its own renderer, or it draws with the service's defaults.
 for (const l of config.layers || []) {
   const entry = catalogue.layers.find((e) => e.id === l.id);
