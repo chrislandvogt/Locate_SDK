@@ -4,6 +4,8 @@
 import config from "./config.js";
 
 const runtime = window.RUNTIME_CONFIG || {};
+// Presenter-only AI: true only where runtime-config points at a chat endpoint (the local preview server).
+const aiAvailable = Boolean(runtime.foundry?.url && runtime.foundry?.key);
 const $ = (id) => document.getElementById(id);
 let theme = config.theme === "light" ? "light" : "dark";
 
@@ -134,7 +136,7 @@ function popupFor(entry, cfg) {
     expressionInfos,
     fieldInfos: fields.map((f) => ({ fieldName: f.name, label: f.label })),
     overwriteActions: true, // no stock "Zoom to"
-    actions: config.features.assistant?.enabled && config.features.assistant.modes?.includes("explain")
+    actions: aiAvailable && config.features.assistant?.enabled && config.features.assistant.modes?.includes("explain")
       ? [{ id: "explain", title: "Explain this", icon: "speech-bubble" }] : [],
   };
 }

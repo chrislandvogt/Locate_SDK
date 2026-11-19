@@ -1,7 +1,7 @@
 // AI assistant: a chat panel that answers in plain English and can filter or zoom the map.
-// Calls the Foundry deployment directly with a CAPPED key from runtime-config.js (written at deploy,
-// never committed). The key is visible to anyone using the app: that's accepted for the workshop
-// hour only, and the key is rotated straight after. See docs/00-plan.md, open item A.
+// PRESENTER-ONLY: it appears only where runtime-config.js points at a chat endpoint, i.e. the local
+// preview server on the presenter's laptop (scripts/serve.mjs → /__ai/chat, key held server-side).
+// The public Pages site has no endpoint, so the assistant doesn't mount there at all.
 // Config: { enabled, modes: ["filter", "explain"], suggestions: ["..."] }
 
 const MIN_GAP_MS = 4000;
@@ -13,6 +13,7 @@ export async function mount(ctx, opts) {
   const fc = runtime.foundry || {};
   const connected = Boolean(fc.url && fc.key);
   const label = fc.label || "Assistant";
+  if (!connected) return; // public site: no AI, no panel, no button
 
   // ---------- panel ----------
   const end = document.getElementById("panel-end");
@@ -138,15 +139,20 @@ export async function mount(ctx, opts) {
     return w;
   }
 
+  // Each layer's own filter (catalogue + config, e.g. "schools only") is kept; AI filters narrow it, never replace it.
+  const baseWhere = new Map(featureLayers.map(([id, l]) => [id, l.definitionExpression || null]));
+  const withBase = (id, w) => (baseWhere.get(id) ? `(${baseWhere.get(id)}) AND (${w})` : w);
+
   async function applyAction(a) {
     if (a.type === "clear") {
-      for (const [, l] of featureLayers) l.definitionExpression = null;
+      for (const [id, l] of featureLayers) l.definitionExpression = baseWhere.get(id);
       return say("assistant", "Filters cleared.", "note");
     }
     const layer = layers.get(a.layer);
     if (!layer || layer.type !== "feature") return;
-    const where = safeWhere(a.where, layer);
-    if (!where) return say("assistant", "I couldn't turn that into a safe filter, so the map hasn't changed.", "note");
+    const safe = safeWhere(a.where, layer);
+    if (!safe) return say("assistant", "I couldn't turn that into a safe filter, so the map hasn't changed.", "note");
+    const where = withBase(a.layer, safe);
     const n = await layer.queryFeatureCount({ where }).catch(() => null);
     if (n == null) return say("assistant", "That filter didn't work on this layer, so the map hasn't changed.", "note");
     if (a.type === "filter") {

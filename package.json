@@ -2,9 +2,12 @@
   "name": "great-map-app",
   "private": true,
   "type": "module",
-  "description": "Map app built live at the Esri Australia workshop with the ArcGIS Maps SDK for JavaScript. No build step, no dependencies.",
+  "description": "Map app built live at the Esri Australia workshop with the ArcGIS Maps SDK for JavaScript. The deployed app has no build step and no dependencies; the Anthropic SDK is only for the presenter's local AI proxy in scripts/serve.mjs.",
   "scripts": {
     "serve": "node scripts/serve.mjs",
     "check": "node scripts/check.mjs"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^1.10.0"
   }
 }

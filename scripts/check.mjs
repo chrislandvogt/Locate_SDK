@@ -30,9 +30,12 @@ const { default: config } = await import(pathToFileURL(path.join(app, "config.js
 for (const l of config.layers || []) if (!ids.has(l.id)) problems.push(`config.layers: "${l.id}" is not in catalogue.json`);
 const used = new Set((config.layers || []).map((l) => l.id));
 
-// No AI assistant in the public workshop app (no safe place for a model key). See CLAUDE.md.
-const assistant = config.features?.assistant;
-if (assistant && assistant.enabled !== false) problems.push("features.assistant must stay false for the workshop app (CLAUDE.md: No in-app assistant)");
+// Presenter-only AI: the public site must never carry a model key or endpoint. In the deploy workflow
+// (GITHUB_ACTIONS), runtime-config.js has just been written from secrets: fail if it holds any.
+if (process.env.GITHUB_ACTIONS) {
+  const rc = fs.existsSync(path.join(app, "runtime-config.js")) ? fs.readFileSync(path.join(app, "runtime-config.js"), "utf8") : "";
+  if (/"(url|key)":"[^"]+"/.test(rc)) problems.push("runtime-config.js has a model url or key: the public site must not have AI (CLAUDE.md: Presenter-only AI chat)");
+}
 
 // No stock styling: every feature layer needs its own renderer, or it draws with the service's defaults.
 for (const l of config.layers || []) {

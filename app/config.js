@@ -75,8 +75,13 @@ export default {
     search: true, // address and place search
     filter: { layer: "abs-lga-2021", field: "state_name_2021", label: "State" },
     room: true, // "From the room": what the audience asked for
-    // Off for the workshop: a public app can't hold a model key safely. Leave it off (see CLAUDE.md).
-    assistant: false,
+    // Presenter-only AI chat: appears only on the presenter's laptop (local preview server holds the key).
+    // The public site never shows it. See CLAUDE.md, "Presenter-only AI chat".
+    assistant: {
+      enabled: true,
+      modes: ["filter", "explain"],
+      suggestions: ["Show council areas in Victoria", "Which councils are shires?"],
+    },
     share: true, // copy a link to the current view
     locate: true, // "near me" button
   },
