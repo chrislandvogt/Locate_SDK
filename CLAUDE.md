@@ -19,7 +19,7 @@ The audience reads your messages on the big screen. Be clear, brief and calm. Co
    - **The job:** e.g. "Find which suburbs will outgrow their services"
    - **Success:** e.g. "Can say which three suburbs, and why, in five minutes"
 
-   This persona is the brief. Every later decision (extent, layers, symbols, labels, popups, theme, features, assistant suggestions) has to make sense for this person. If something only makes sense for someone else, it doesn't go in. Write it to `config.persona`.
+   This persona is the brief. Every later decision (extent, layers, symbols, labels, popups, theme, features, assistant suggestions) has to make sense for this person. If something only makes sense for someone else, it doesn't go in. Write it to `config.persona` as `who`, `context`, `job` and `success`. The app's "Built for" panel shows the first three. `success` isn't displayed: it records what the plan's criteria test.
 3. **Synthesise** in 6 lines or fewer:
    - the 3 to 4 most-asked-for datasets, matched to catalogue ids
    - the 2 to 3 must-do interactions
@@ -35,9 +35,21 @@ The audience reads your messages on the big screen. Be clear, brief and calm. Co
 5. **Build.** Change only:
    - `app/config.js`: title, subtitle, theme, basemap, extent, layers (with renderers and popups), features, room
    - `app/features/*.js`: a new feature module, only if a must-do can't be done by config. At most one new module, under 120 lines.
-6. **Check.** Run:
+6. **Check.** Budget about 5 minutes. In rehearsal this was the longest phase, and most of that time went on tooling.
    - `node scripts/check.mjs`. It must pass.
-   - Then the browser preview at `http://localhost:5180` (`node scripts/serve.mjs`). Confirm each success criterion and that the console has no errors.
+   - **Preview:** use `preview_start` with the `live-build` entry in `.claude/launch.json` (`node scripts/serve.mjs` on `http://localhost:5180`). If port 5180 is already serving, reuse it.
+   - **The browser pane must be visible.** A hidden pane never draws the map (no tiles, no queries), so a blank map there means nothing. Show the pane before you judge anything. If Claude in Chrome isn't connected, use the built-in pane: don't stop to fix Chrome.
+   - **Don't rely on clicking the map canvas.** Clicks from the browser tools often don't reach the view, so popups never open. Use clicks for Calcite controls only (search, share, the layer list), and open popups from the console:
+     ```js
+     const l = app.layers.get("vic-urban-heat-2018");
+     const q = await l.queryFeatures({ where: "LOCALITY = 'FOOTSCRAY'", outFields: ["*"], returnGeometry: false });
+     const g = q.features[0]; g.layer = l; g.sourceLayer = l;
+     app.view.openPopup({ features: [g], location: app.view.center });
+     ```
+     For huge polygons (bushfire prone areas), query by point instead: `geometry: app.view.center, spatialRelationship: "intersects"`. Use `app.view.goTo({ center: [lon, lat], scale: 18000 })` to check a label scale.
+   - **Console:** the unchanged scaffold logs two `Failed to load resource: ... 404 (Not Found)` lines on load. They're known: ignore exactly those two. Any other error is yours to fix.
+   - **Phone width:** check at 375 px as well (`resize_window` preset `mobile`), then reset to `desktop`.
+   - Confirm each success criterion. If a criterion can't be checked because of tooling, say so in one line and move on.
 7. **Ship.** `git add -A && git commit -m "<what the room asked for>" && git push`. Then `gh run watch` until the Pages deploy is green. Report the Pages URL.
 
 Keep each status message to one or two sentences. The presenter is narrating over you.
@@ -79,12 +91,14 @@ Simple over clever, every time. If two approaches work, choose the one the perso
 - The interface should fade into the background: as few panels as the persona needs, and the most useful one open first.
 - **Theme:** `"light"`, plain white, is the default: keep it simple. Use `"dark"` only if the room clearly asks for an ops-centre look. For field crews in sunlight, keep it light, with the `"streets"` or `"topo"` basemap.
 - **Words:** labels people actually say, in sentence case. "Flood planning area", not "FLOOD_PLAN_AREA_V3". "Filter by suburb", not "Attribute filtering".
+- **Title and subtitle are short.** Keep the subtitle to 30 characters or fewer: a longer one pushes Share, the assistant and the theme toggle off a phone screen.
 
 ### The map: let the data speak
 
 The map should have real cartographic merit: considered hierarchy, restraint and legibility, not SDK defaults.
 
 - **One message per map.** One thematic layer gets the colour and the attention. Context layers (boundaries, roads) get thin outlines, no fill and low opacity.
+- **Choose a tight extent.** `extent` is fitted to the window, so on a phone (narrow and tall) the map opens much further out than on desktop. Frame only the area the persona works in.
 - **Mute the basemap.** Use `"gray"` (it follows the theme) unless the persona needs imagery, topography or streets to do the job.
 - **Colour has a job.**
   - A single-hue ramp for "how much", with 4 or 5 classes.
@@ -113,8 +127,8 @@ Then:
 The default popup, a table of raw field names and values with "Zoom to" underneath, is not acceptable. Use `popup` on the layer in `config.js`:
 - **`title`:** an Arcade expression that returns a clean, human name.
 - **`arcade`:** an Arcade expression that returns `{ type: "text", text: "<p>…</p>" }`, a sentence or two that answers the persona's question about **this** feature:
-  - Numbers formatted with `Text(n, "#,###")`, with units.
-  - A comparison when it helps ("2.3 times the state average", "one of 12 in this council").
+  - Numbers rounded, then formatted with `Text(Round(n, 0), "#,##0")` (or `Round(n, 1)` with `"#,##0.0"`), with units. Never use the bare pattern `"0"`: in rehearsal, `Text(15.4, "0")` printed "5".
+  - A comparison when it helps ("2.3 times the state average", "one of 12 in this council"). Take the comparison figure from the data, never from memory: run one `outStatistics` query (e.g. `avg`) against the entry's catalogue `url` while building, then put it in the Arcade as a constant with a comment saying what it is ("mean of the 442 suburbs in this layer").
   - **Bold** only on the one number that matters.
 - **`fields`:** optional, at most 4 supporting facts, with human labels and formatted numbers. Hide fields that are empty.
 - **`chart`:** only when comparing 3 or more related values. Otherwise leave it out.
