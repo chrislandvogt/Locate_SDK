@@ -151,11 +151,12 @@ Never use any of these:
 
 Never use any government logo, coat of arms or typeface (NSW or Victorian): this is an Esri Australia demo, not a government product. If a sentence in the interface could appear in any app, rewrite it for this persona or delete it.
 
-## The assistant (Foundry)
+## The in-app assistant
 
-- `features.assistant` already does natural-language filtering and "Explain this" in popups, with validated SQL.
+- Use `features.assistant`. It already does natural-language filtering and "Explain this" in popups, with validated SQL.
 - Configure it: `modes` and 3 or 4 `suggestions` written from the room's AI answers and catalogue fields that exist, e.g. "Show council areas in Victoria".
 - Don't change how it gets its key, its rate limits or its SQL validation.
+- Don't use the Maps SDK's AI components (`arcgis-assistant`). They need every user to sign in with an ArcGIS named-user account, and the workshop app is public. If the room asks for something only they can do, list it under "Not in this build" as "Map assistant with ArcGIS sign-in: needs named users".
 
 ## Never
 
