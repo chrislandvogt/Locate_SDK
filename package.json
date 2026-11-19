@@ -1,0 +1,10 @@
+{
+  "name": "great-map-app",
+  "private": true,
+  "type": "module",
+  "description": "Map app built live at the Esri Australia workshop with the ArcGIS Maps SDK for JavaScript. No build step, no dependencies.",
+  "scripts": {
+    "serve": "node scripts/serve.mjs",
+    "check": "node scripts/check.mjs"
+  }
+}

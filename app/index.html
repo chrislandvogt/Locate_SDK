@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Map app</title>
+  <meta name="description" content="Built live at the workshop with the ArcGIS Maps SDK for JavaScript." />
+  <link rel="stylesheet" href="https://js.arcgis.com/5.2/esri/themes/light/main.css" id="esri-theme" />
+  <script type="module" src="https://js.arcgis.com/5.2/"></script>
+  <!-- Written at deploy time from GitHub Actions secrets. Missing locally unless you copy runtime-config.example.js. -->
+  <script src="runtime-config.js" onerror="window.RUNTIME_CONFIG = window.RUNTIME_CONFIG || {}"></script>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="calcite-mode-light" data-theme="light">
+  <calcite-shell>
+    <calcite-navigation slot="header">
+      <calcite-navigation-logo slot="logo" id="app-title" heading="Map app" description=""></calcite-navigation-logo>
+      <div slot="content-end" class="header-end">
+        <calcite-action id="theme-toggle" icon="brightness" text="Switch theme" scale="m"></calcite-action>
+        <calcite-tooltip reference-element="theme-toggle" placement="bottom">Switch theme</calcite-tooltip>
+      </div>
+    </calcite-navigation>
+
+    <calcite-shell-panel slot="panel-start" id="panel-start" display-mode="dock" width="m">
+      <calcite-action-bar slot="action-bar" id="action-bar" expand-toggle-disabled></calcite-action-bar>
+    </calcite-shell-panel>
+
+    <arcgis-map id="map"></arcgis-map>
+
+    <calcite-shell-panel slot="panel-end" id="panel-end" display-mode="dock" width="m" collapsed hidden></calcite-shell-panel>
+  </calcite-shell>
+
+  <calcite-alert id="alert" kind="warning" icon placement="bottom" auto-close auto-close-duration="medium">
+    <div slot="title" id="alert-title"></div>
+    <div slot="message" id="alert-message"></div>
+  </calcite-alert>
+
+  <script type="module" src="main.js"></script>
+</body>
+</html>

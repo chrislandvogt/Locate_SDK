@@ -1,0 +1,52 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+
+      # Keys come from repository secrets and exist only in the deployed site, never in git.
+      # The Foundry key is a CAPPED workshop key, rotated straight after the session.
+      - name: Write runtime config
+        env:
+          ARCGIS_API_KEY: ${{ secrets.ARCGIS_API_KEY }}
+          FOUNDRY_URL: ${{ secrets.FOUNDRY_URL }}
+          FOUNDRY_KEY: ${{ secrets.FOUNDRY_KEY }}
+          FOUNDRY_MODEL: ${{ secrets.FOUNDRY_MODEL }}
+          FOUNDRY_AUTH: ${{ vars.FOUNDRY_AUTH }}
+          FOUNDRY_LABEL: ${{ vars.FOUNDRY_LABEL }}
+        run: node scripts/write-runtime-config.mjs app/runtime-config.js
+
+      - name: Check config and catalogue
+        run: node scripts/check.mjs
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: app
+
+      - id: deployment
+        uses: actions/deploy-pages@v4

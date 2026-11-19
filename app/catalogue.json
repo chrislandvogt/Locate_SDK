@@ -1,0 +1,2575 @@
+{
+  "_readme": "Vetted public layers. The live build may only use these. Verified anonymously with CORS (Origin: https://chrislandvogt.github.io): NSW/national entries on 2026-11-17, Victorian ('vic-') entries on 2026-11-17. All feature entries are MapServer/FeatureServer sublayers usable as FeatureLayer; 'definitionExpression' (where present) must be applied; 'serviceMinScale' is the scale limit published by the service (override with layer.minScale if needed); 'notes' list caveats. 'hiddenFields' are never requested, shown or sent to the assistant (personal information). Items on staff/personal accounts or with terms restricting third-party/public use are excluded.",
+  "verifiedAt": "2026-11-17T06:26:29+00:00",
+  "verifiedFromOrigin": "https://chrislandvogt.github.io",
+  "layers": [
+    {
+      "id": "abs-lga-2021",
+      "title": "Local Government Areas (ABS ASGS 2021)",
+      "theme": "boundaries",
+      "keywords": [
+        "council",
+        "LGA",
+        "local government area",
+        "shire",
+        "city",
+        "boundary",
+        "boundaries",
+        "my council"
+      ],
+      "coverage": "National",
+      "url": "https://geo.abs.gov.au/arcgis/rest/services/ASGS2021/LGA/FeatureServer/0",
+      "type": "feature",
+      "geometryType": "polygon",
+      "featureCount": 566,
+      "maxRecordCount": 2000,
+      "displayField": "lga_name_2021",
+      "popupFields": [
+        {
+          "name": "lga_name_2021",
+          "label": "LGA name"
+        },
+        {
+          "name": "lga_code_2021",
+          "label": "LGA code"
+        },
+        {
+          "name": "state_name_2021",
+          "label": "State"
+        },
+        {
+          "name": "area_albers_sqkm",
+          "label": "Area (km²)"
+        }
+      ],
+      "suggestedMinScale": 0,
+      "serviceMinScale": 0,
+      "attribution": "© Australian Bureau of Statistics (ABS), ASGS Edition 3",
+      "licence": "CC BY 4.0",
+      "cors": "*",
+      "supportsPbf": true,
+      "verifiedSeconds": {
+        "metadata": 0.1,
+        "count": 0
+      },
+      "notes": "ABS approximation of gazetted LGAs (2021 edition). Full-resolution geometry is heavy (~0.5 MB per LGA); the service supports PBF + quantization so FeatureLayer is fine. Field names are lower case."
+    },
+    {
+      "id": "abs-suburbs-2021",
+      "title": "Suburbs and Localities (ABS SAL 2021)",
+      "theme": "boundaries",
+      "keywords": [
+        "suburb",
+        "suburbs",
+        "locality",
+        "town",
+        "neighbourhood",
+        "SAL",
+        "boundary"
+      ],
+      "coverage": "National",
+      "url": "https://geo.abs.gov.au/arcgis/rest/services/ASGS2021/SAL/FeatureServer/0",
+      "type": "feature",
+      "geometryType": "polygon",
+      "featureCount": 15353,
+      "maxRecordCount": 2000,
+      "displayField": "sal_name_2021",
+      "popupFields": [
+        {
+          "name": "sal_name_2021",
+          "label": "Suburb / locality"
+        },
+        {
+          "name": "sal_code_2021",
+          "label": "SAL code"
+        },
+        {
+          "name": "state_name_2021",
+          "label": "State"
+        },
+        {
+          "name": "area_albers_sqkm",
+          "label": "Area (km²)"
+        }
+      ],
+      "suggestedMinScale": 500000,
+      "serviceMinScale": 0,
+      "attribution": "© Australian Bureau of Statistics (ABS), ASGS Edition 3",
+      "licence": "CC BY 4.0",
+      "cors": "*",
+      "supportsPbf": true,
+      "verifiedSeconds": {
+        "metadata": 0,
+        "count": 0
+      },
+      "notes": "15k polygons nationally; filter with definitionExpression \"state_name_2021 = 'New South Wales'\" for NSW only."
+    },
+    {
+      "id": "abs-sa2-2021",
+      "title": "Statistical Areas Level 2 (ABS SA2 2021)",
+      "theme": "boundaries",
+      "keywords": [
+        "SA2",
+        "statistical area",
+        "census area",
+        "region",
+        "neighbourhood"
+      ],
+      "coverage": "National",
+      "url": "https://geo.abs.gov.au/arcgis/rest/services/ASGS2021/SA2/FeatureServer/0",
+      "type": "feature",
+      "geometryType": "polygon",
+      "featureCount": 2473,
+      "maxRecordCount": 2000,
+      "displayField": "sa2_name_2021",
+      "popupFields": [
+        {
+          "name": "sa2_name_2021",
+          "label": "SA2 name"
+        },
+        {
+          "name": "sa2_code_2021",
+          "label": "SA2 code"
+        },
+        {
+          "name": "sa3_name_2021",
+          "label": "SA3"
+        },
+        {
+          "name": "sa4_name_2021",
+          "label": "SA4"
+        },
+        {
+          "name": "gccsa_name_2021",
+          "label": "Greater capital city area"
+        }
+      ],
+      "suggestedMinScale": 0,
+      "serviceMinScale": 0,
+      "attribution": "© Australian Bureau of Statistics (ABS), ASGS Edition 3",
+      "licence": "CC BY 4.0",
+      "cors": "*",
+      "supportsPbf": true,
+      "verifiedSeconds": {
+        "metadata": 0,
+        "count": 0
+      }
+    },
+    {
+      "id": "abs-lga-population-2025",
+      "title": "Population by LGA (ABS Regional Population 2025)",
+      "theme": "population",
+      "keywords": [
+        "population",
+        "people",
+        "residents",
+        "density",
+        "growth",
+        "ERP",
+        "how many people",
+        "census"
+      ],
+      "coverage": "National",
+      "url": "https://geo.abs.gov.au/arcgis/rest/services/Hosted/LGA_Regional_Population_2025/FeatureServer/1",
+      "type": "feature",
+      "geometryType": "polygon",
+      "featureCount": 548,
+      "maxRecordCount": 2000,
+      "displayField": "lga_name_2025",
+      "popupFields": [
+        {
+          "name": "lga_name_2025",
+          "label": "LGA"
+        },
+        {
+          "name": "erp_2025",
+          "label": "Estimated resident population 2025"
+        },
+        {
+          "name": "erp_change_per_cent_2024_25",
+          "label": "Change 2024-25 (%)"
+        },
+        {
+          "name": "pop_density_2025_people_per_km2",
+          "label": "Density (people/km²)"
+        },
+        {
+          "name": "area_km2",
+          "label": "Area (km²)"
+        }
+      ],
+      "suggestedMinScale": 0,
+      "serviceMinScale": 0,
+      "attribution": "© Australian Bureau of Statistics (ABS), Regional Population 2024-25",
+      "licence": "Not stated in service metadata (ABS content is generally CC BY 4.0)",
+      "cors": "*",
+      "supportsPbf": true,
+      "verifiedSeconds": {
+        "metadata": 0,
+        "count": 0
+      },
+      "notes": "2025 LGA boundaries with ERP for 2001-2025 (erp_2001..erp_2025) plus births, deaths and migration fields. Good for class-breaks on density or growth."
+    },
+    {
+      "id": "abs-sa2-population-2025",
+      "title": "Population by SA2 (ABS Regional Population 2025)",
+      "theme": "population",
+      "keywords": [
+        "population",
+        "density",
+        "growth",
+        "people",
+        "ERP",
+        "neighbourhood population"
+      ],
+      "coverage": "National",
+      "url": "https://geo.abs.gov.au/arcgis/rest/services/Hosted/SA2_Regional_Population_2025/FeatureServer/3",
+      "type": "feature",
+      "geometryType": "polygon",
+      "featureCount": 2454,
+      "maxRecordCount": 2000,
+      "displayField": "sa2_name_2021",
+      "popupFields": [
+        {
+          "name": "sa2_name_2021",
+          "label": "SA2"
+        },
+        {
+          "name": "erp_2025",
+          "label": "Estimated resident population 2025"
+        },
+        {
+          "name": "erp_change_number_2024_25",
+          "label": "Change 2024-25"
+        },
+        {
+          "name": "erp_change_per_cent_2024_25",
+          "label": "Change 2024-25 (%)"
+        },
+        {
+          "name": "pop_density_2025_people_per_km2",
+          "label": "Density (people/km²)"
+        }
+      ],
+      "suggestedMinScale": 0,
+      "serviceMinScale": 0,
+      "attribution": "© Australian Bureau of Statistics (ABS), Regional Population 2024-25",
+      "licence": "Not stated in service metadata (ABS content is generally CC BY 4.0)",
+      "cors": "*",
+      "supportsPbf": true,
+      "verifiedSeconds": {
+        "metadata": 0,
+        "count": 0
+      },
+      "notes": "Service default displayField is state_name_2021; use sa2_name_2021 for titles."
+    },
+    {
+      "id": "abs-seifa-lga-2021",
+      "title": "Socio-economic disadvantage by LGA (ABS SEIFA 2021)",
+      "theme": "population",
+      "keywords": [
+        "SEIFA",
+        "disadvantage",
+        "socio-economic",
+        "income",
+        "equity",
+        "vulnerable",
+        "advantage"
+      ],
+      "coverage": "National",
+      "url": "https://geo.abs.gov.au/arcgis/rest/services/Hosted/ABS_Socio_Economic_Indexes_for_Areas_SEIFA_by_2021_LGA/FeatureServer/0",
+      "type": "feature",
+      "geometryType": "polygon",
+      "featureCount": 566,
+      "maxRecordCount": 5000,
+      "displayField": "lga_name_2021",
+      "popupFields": [
+        {
+          "name": "lga_name_2021",
+          "label": "LGA"
+        },
+        {
+          "name": "urp",
+          "label": "Usual resident population"
+        },
+        {
+          "name": "irsd_score",
+          "label": "IRSD score"
+        },
+        {
+          "name": "irsd_aus_decile",
+          "label": "IRSD decile (Australia)"
+        },
+        {
+          "name": "irsd_state_decile",
+          "label": "IRSD decile (state)"
+        },
+        {
+          "name": "irsad_aus_decile",
+          "label": "IRSAD decile (Australia)"
+        }
+      ],
+      "suggestedMinScale": 0,
+      "serviceMinScale": 0,
+      "attribution": "© Australian Bureau of Statistics (ABS), SEIFA 2021",
+      "licence": "Not stated in service metadata (ABS content is generally CC BY 4.0)",
+      "cors": "*",
+      "supportsPbf": true,
+      "verifiedSeconds": {
+        "metadata": 0,
+        "count": 0
+      },
+      "notes": "IRSD decile 1 = most disadvantaged. Same geometry weight as abs-lga-2021."
+    },
+    {
+      "id": "nsw-land-zoning",
+      "title": "Land Zoning (NSW LEP)",
+      "theme": "planning",
+      "keywords": [
+        "zoning",
+        "zone",
+        "land use",
+        "LEP",
+        "R2",
+        "residential",
+        "industrial",
+        "planning controls",
+        "DA"
+      ],
+      "coverage": "NSW",
+      "url": "https://mapprod3.environment.nsw.gov.au/arcgis/rest/services/ePlanning/Planning_Portal_Principal_Planning/MapServer/19",
+      "type": "feature",
+      "geometryType": "polygon",
+      "featureCount": 70596,
+      "maxRecordCount": 2000,
+      "displayField": "SYM_CODE",
+      "popupFields": [
+        {
+          "name": "SYM_CODE",
+          "label": "Zone"
+        },
+        {
+          "name": "LAY_CLASS",
+          "label": "Land use"
+        },
+        {
+          "name": "EPI_NAME",
+          "label": "EPI name"
+        },
+        {
+          "name": "LGA_NAME",
+          "label": "LGA"
+        },
+        {
+          "name": "COMMENCED_DATE",
+          "label": "Commenced"
+        }
+      ],
+      "suggestedMinScale": 100000,
+      "serviceMinScale": 100000,
+      "attribution": "© State of New South Wales (Department of Planning, Housing and Infrastructure), NSW Planning Portal",
+      "licence": "Not stated in service metadata (NSW Government open data is generally CC BY 4.0 - confirm before reuse)",
+      "cors": "*",
+      "supportsPbf": true,
+      "verifiedSeconds": {
+        "metadata": 0,
+        "count": 0
+      },
+      "notes": "Service enforces minScale 100000. SYM_CODE holds the zone code (e.g. R2) - good for unique-value renderer."
+    },
+    {
+      "id": "nsw-heritage",
+      "title": "Heritage items and conservation areas (NSW LEP)",
+      "theme": "planning",
+      "keywords": [
+        "heritage",
+        "heritage item",
+        "conservation area",
+        "history",
+        "historic",
+        "listed"
+      ],
+      "coverage": "NSW",
+      "url": "https://mapprod3.environment.nsw.gov.au/arcgis/rest/services/ePlanning/Planning_Portal_Principal_Planning/MapServer/16",
+      "type": "feature",
+      "geometryType": "polygon",
+      "featureCount": 40355,
+      "maxRecordCount": 2000,
+      "displayField": "H_NAME",
+      "popupFields": [
+        {
+          "name": "H_NAME",
+          "label": "Item name"
+        },
+        {
+          "name": "LAY_CLASS",
+          "label": "Heritage type"
+        },
+        {
+          "name": "SIG",
+          "label": "Significance"
+        },
+        {
+          "name": "H_ID",
+          "label": "Item number"
+        },
+        {
+          "name": "LGA_NAME",
+          "label": "LGA"
+        }
+      ],
+      "suggestedMinScale": 100000,
+      "serviceMinScale": 100000,
+      "attribution": "© State of New South Wales (Department of Planning, Housing and Infrastructure), NSW Planning Portal",
+      "licence": "Not stated in service metadata (NSW Government open data is generally CC BY 4.0 - confirm before reuse)",
+      "cors": "*",
+      "supportsPbf": true,
+      "verifiedSeconds": {
+        "metadata": 0,
+        "count": 0
+      },
+      "notes": "Service enforces minScale 100000."
+    },
+    {
+      "id": "nsw-flood-planning",
+      "title": "Flood Planning Area (NSW LEP)",
+      "theme": "planning",
+      "keywords": [
+        "flood",
+        "flooding",
+        "flood planning",
+        "flood prone",
+        "floodplain",
+        "FPL",
+        "hazard"
+      ],
+      "coverage": "NSW (councils with an LEP flood map)",
+      "url": "https://mapprod3.environment.nsw.gov.au/arcgis/rest/services/ePlanning/Planning_Portal_Hazard/MapServer/230",
+      "type": "feature",
+      "geometryType": "polygon",
+      "featureCount": 629,
+      "maxRecordCount": 2000,
+      "displayField": "EPI_NAME",
+      "popupFields": [
+        {
+          "name": "LAY_CLASS",
+          "label": "Class"
+        },
+        {
+          "name": "EPI_NAME",
+          "label": "EPI name"
+        },
+        {
+          "name": "LGA_NAME",
+          "label": "LGA"
+        },
+        {
+          "name": "COMMENCED_DATE",
+          "label": "Commenced"
+        }
+      ],
+      "suggestedMinScale": 50000,
+      "serviceMinScale": 50000,
+      "attribution": "© State of New South Wales (Department of Planning, Housing and Infrastructure), NSW Planning Portal",
+      "licence": "Not stated in service metadata (NSW Government open data is generally CC BY 4.0 - confirm before reuse)",
+      "cors": "*",
+      "supportsPbf": true,
+      "verifiedSeconds": {
+        "metadata": 0,
+        "count": 0
+      },
+      "notes": "Only 629 polygons but very detailed (~1 MB for 5 features at full resolution). Service enforces minScale 50000. Not every council has an LEP flood map."
+    },
+    {
+      "id": "nsw-bushfire-prone-land",
+      "title": "Bush Fire Prone Land (NSW)",
+      "theme": "planning",
+      "keywords": [
+        "bushfire",
+        "bush fire",
+        "fire",
+        "BFPL",
+        "bushfire prone",
+        "BAL",
+        "hazard"
+      ],
+      "coverage": "NSW",
+      "url": "https://mapprod3.environment.nsw.gov.au/arcgis/rest/services/ePlanning/Planning_Portal_Hazard/MapServer/229",
+      "type": "feature",
+      "geometryType": "polygon",
+      "featureCount": 227131,
+      "maxRecordCount": 2000,
+      "displayField": "d_Category",
+      "popupFields": [
+        {
+          "name": "d_Category",
+          "label": "Category"
+        },
+        {
+          "name": "d_Guidelin",
+          "label": "Guideline"
+        },
+        {
+          "name": "LastUpdate",
+          "label": "Last update"
+        }
+      ],
+      "suggestedMinScale": 250000,
+      "serviceMinScale": 250000,
+      "attribution": "© State of New South Wales (NSW Rural Fire Service / DPHI)",
+      "licence": "Not stated in service metadata (NSW Government open data is generally CC BY 4.0 - confirm before reuse)",
+      "cors": "*",
+      "supportsPbf": true,
+      "verifiedSeconds": {
+        "metadata": 0,
+        "count": 0.1
+      },
+      "notes": "Service default displayField (StartDate) is not a field in this layer; use d_Category. Values: Vegetation Category 1/2/3, Vegetation Buffer. Service enforces minScale 250000. One 502 Bad Gateway seen during testing (succeeded on retry)."
+    },
+    {
+      "id": "nsw-development-applications",
+      "title": "Development applications (NSW Planning Portal)",
+      "theme": "planning",
+      "keywords": [
+        "DA",
+        "development application",
+        "development",
+        "CDC",
+        "applications",
+        "building",
+        "construction",
+        "approvals"
+      ],
+      "coverage": "NSW",
+      "url": "https://mapprod3.environment.nsw.gov.au/arcgis/rest/services/Planning/Planning_Portal_Application_Tracking/MapServer/0",
+      "type": "feature",
+      "geometryType": "point",
+      "featureCount": 324617,
+      "maxRecordCount": 4000,
+      "displayField": "PLANNING_PORTAL_APP_NUMBER",
+      "popupFields": [
+        {
+          "name": "PLANNING_PORTAL_APP_NUMBER",
+          "label": "Application number"
+        },
+        {
+          "name": "APPLICATION_TYPE",
+          "label": "Application type"
+        },
+        {
+          "name": "STATUS",
+          "label": "Status"
+        },
+        {
+          "name": "TYPE_OF_DEVELOPMENT",
+          "label": "Type of development"
+        },
+        {
+          "name": "COST_OF_DEVELOPMENT",
+          "label": "Cost of development ($)"
+        },
+        {
+          "name": "LGA_NAME",
+          "label": "LGA"
+        }
+      ],
+      "suggestedMinScale": 150000,
+      "serviceMinScale": 0,
+      "attribution": "© State of New South Wales (Department of Planning, Housing and Infrastructure), NSW Planning Portal",
+      "licence": "Not stated in service metadata (NSW Government open data is generally CC BY 4.0 - confirm before reuse)",
+      "cors": "*",
+      "supportsPbf": false,
+      "verifiedSeconds": {
+        "metadata": 0,
+        "count": 0.1
+      },
+      "notes": "STALE: latest LODGEMENT_DATE is April 2023 and latest DETERMINED_DATE Nov 2023, so present it as historical. Dates are text (e.g. 20201118). LGA_NAME is upper case (e.g. 'SUTHERLAND SHIRE'). Contains a DEVELOPMENT_SITE_OWNER field - do not show it. Layer JSON has no objectIdField key but OBJECTID is an OID-type field. Some points have bad coordinates (extent is skewed).",
+      "hiddenFields": [
+        "DEVELOPMENT_SITE_OWNER"
+      ]
+    },
+    {
+      "id": "nsw-cadastre-lots",
+      "title": "Property lots (NSW Cadastre)",
+      "theme": "planning",
+      "keywords": [
+        "lot",
+        "property",
+        "parcel",
+        "cadastre",
+        "DP",
+        "lot and plan",
+        "land title",
+        "block"
+      ],
+      "coverage": "NSW",
+      "url": "https://maps.six.nsw.gov.au/arcgis/rest/services/public/NSW_Cadastre/MapServer/9",
+      "type": "feature",
+      "geometryType": "polygon",
+      "featureCount": 3357839,
+      "maxRecordCount": 1000,
+      "displayField": "lotidstring",
+      "popupFields": [
+        {
+          "name": "lotidstring",
+          "label": "Lot / plan"
+        },
+        {
+          "name": "lotnumber",
+          "label": "Lot"
+        },
+        {
+          "name": "planlabel",
+          "label": "Plan"
+        },
+        {
+          "name": "planlotarea",
+          "label": "Area"
+        },
+        {
+          "name": "planlotareaunits",
+          "label": "Area units"
+        }
+      ],
+      "suggestedMinScale": 10000,
+      "serviceMinScale": 0,
+      "attribution": "© State of New South Wales (Spatial Services, Department of Customer Service)",
+      "licence": "Not stated in service metadata (NSW Government open data is generally CC BY 4.0 - confirm before reuse)",
+      "cors": "*",
+      "supportsPbf": false,
+      "verifiedSeconds": {
+        "metadata": 0.1,
+        "count": 61.8
+      },
+      "notes": "3.36M polygons. Extent-based queries are fast (~0.1 s) but where=1=1 counts took 15 s, 62 s, 94 s and >120 s (timeout) across four tests and full-table queries time out - never run unfiltered statistics or a feature table on this layer. Server is 10.51: no PBF/quantization. Keep minScale <= 10000."
+    },
+    {
+      "id": "national-major-roads",
+      "title": "Major roads (Digital Atlas of Australia)",
+      "theme": "transport",
+      "keywords": [
+        "roads",
+        "road",
+        "highway",
+        "arterial",
+        "traffic",
+        "street",
+        "motorway"
+      ],
+      "coverage": "National",
+      "url": "https://services-ap1.arcgis.com/ypkPEy1AmwPKGNNv/arcgis/rest/services/MajorRoads/FeatureServer/0",
+      "type": "feature",
+      "geometryType": "polyline",
+      "featureCount": 537485,
+      "maxRecordCount": 2000,
+      "displayField": "full_street_name",
+      "popupFields": [
+        {
+          "name": "full_street_name",
+          "label": "Road"
+        },
+        {
+          "name": "hierarchy",
+          "label": "Hierarchy"
+        },
+        {
+          "name": "state_route",
+          "label": "State route"
+        },
+        {
+          "name": "national_route",
+          "label": "National route"
+        },
+        {
+          "name": "surface",
+          "label": "Surface"
+        }
+      ],
+      "suggestedMinScale": 300000,
+      "serviceMinScale": 0,
+      "attribution": "Digital Atlas of Australia; incorporates Geoscape Roads © Geoscape Australia",
+      "licence": "CC BY 4.0",
+      "cors": "*",
+      "supportsPbf": true,
+      "verifiedSeconds": {
+        "metadata": 0.4,
+        "count": 0.3
+      },
+      "notes": "hierarchy values: NATIONAL OR STATE HIGHWAY, ARTERIAL ROAD, SUB-ARTERIAL ROAD. Filter state = 'NSW' if needed."
+    },
+    {
+      "id": "national-railway-stations",
+      "title": "Railway stations (Geoscience Australia)",
+      "theme": "transport",
+      "keywords": [
+        "train",
+        "station",
+        "rail",
+        "railway",
+        "public transport",
+        "metro",
+        "commute"
+      ],
+      "coverage": "National",
+      "url": "https://services.ga.gov.au/gis/rest/services/Foundation_Rail_Infrastructure/MapServer/0",
+      "type": "feature",
+      "geometryType": "point",
+      "featureCount": 3326,
+      "maxRecordCount": 2000,
+      "displayField": "name",
+      "popupFields": [
+        {
+          "name": "name",
+          "label": "Station"
+        },
+        {
+          "name": "suburb",
+          "label": "Suburb"
+        },
+        {
+          "name": "state",
+          "label": "State"
+        },
+        {
+          "name": "operationalstatus",
+          "label": "Status"
+        },
+        {
+          "name": "featuresubtype",
+          "label": "Type"
+        }
+      ],
+      "suggestedMinScale": 0,
+      "serviceMinScale": 0,
+      "attribution": "© Commonwealth of Australia (Geoscience Australia)",
+      "licence": "CC BY 4.0",
+      "cors": "https://chrislandvogt.github.io",
+      "supportsPbf": true,
+      "verifiedSeconds": {
+        "metadata": 0.1,
+        "count": 0.1
+      }
+    },
+    {
+      "id": "nsw-schools",
+      "title": "Schools and preschools (NSW Points of Interest)",
+      "theme": "community",
+      "keywords": [
+        "school",
+        "schools",
+        "primary school",
+        "high school",
+        "education",
+        "preschool",
+        "kids"
+      ],
+      "coverage": "NSW",
+      "url": "https://maps.six.nsw.gov.au/arcgis/rest/services/public/NSW_POI/MapServer/0",
+      "type": "feature",
+      "geometryType": "point",
+      "featureCount": 3759,
+      "maxRecordCount": 1000,
+      "displayField": "poiname",
+      "popupFields": [
+        {
+          "name": "poiname",
+          "label": "Name"
+        },
+        {
+          "name": "poitype",
+          "label": "Type"
+        },
+        {
+          "name": "lastupdate",
+          "label": "Last updated"
+        }
+      ],
+      "suggestedMinScale": 0,
+      "serviceMinScale": 60000,
+      "attribution": "© State of New South Wales (Spatial Services, Department of Customer Service)",
+      "licence": "Not stated in service metadata (NSW Government open data is generally CC BY 4.0 - confirm before reuse)",
+      "cors": "*",
+      "definitionExpression": "poitype IN ('Primary School','High School','Combined Primary-Secondary School','Combined Primary-High School','Special School','Preschool')",
+      "supportsPbf": false,
+      "verifiedSeconds": {
+        "metadata": 0.1,
+        "count": 0
+      },
+      "notes": "Uses the NSW POI layer filtered by definitionExpression. Service default minScale is 60000 - set layer.minScale = 0 explicitly to see all schools at state scale."
+    },
+    {
+      "id": "national-public-hospitals",
+      "title": "Declared public hospitals",
+      "theme": "community",
+      "keywords": [
+        "hospital",
+        "hospitals",
+        "health",
+        "emergency department",
+        "medical"
+      ],
+      "coverage": "National",
+      "url": "https://services5.arcgis.com/OvOcYIrJnM97ABBA/ArcGIS/rest/services/Declared_Public_Hospitals/FeatureServer/0",
+      "type": "feature",
+      "geometryType": "point",
+      "featureCount": 705,
+      "maxRecordCount": 2000,
+      "displayField": "DRVD_HSPTL_NM",
+      "popupFields": [
+        {
+          "name": "DRVD_HSPTL_NM",
+          "label": "Hospital name"
+        },
+        {
+          "name": "HSPTL_TYP",
+          "label": "Hospital type"
+        },
+        {
+          "name": "DRVD_HSPTL_STREET",
+          "label": "Address"
+        },
+        {
+          "name": "DRVD_HSPTL_SUBRB_NM",
+          "label": "Suburb"
+        },
+        {
+          "name": "HSPTL_PCDE_CD",
+          "label": "Postcode"
+        }
+      ],
+      "suggestedMinScale": 0,
+      "serviceMinScale": 0,
+      "attribution": "© Commonwealth of Australia (Department of Health, Disability and Ageing; AIHW), via Digital Atlas of Australia",
+      "licence": "CC BY 4.0",
+      "cors": "*",
+      "supportsPbf": true,
+      "verifiedSeconds": {
+        "metadata": 0.8,
+        "count": 0.4
+      },
+      "notes": "Filter HSPTL_ST = 'NSW' for NSW only."
+    },
+    {
+      "id": "nsw-libraries",
+      "title": "Libraries (NSW Points of Interest)",
+      "theme": "community",
+      "keywords": [
+        "library",
+        "libraries",
+        "community facility",
+        "books"
+      ],
+      "coverage": "NSW",
+      "url": "https://maps.six.nsw.gov.au/arcgis/rest/services/public/NSW_POI/MapServer/0",
+      "type": "feature",
+      "geometryType": "point",
+      "featureCount": 423,
+      "maxRecordCount": 1000,
+      "displayField": "poiname",
+      "popupFields": [
+        {
+          "name": "poiname",
+          "label": "Name"
+        },
+        {
+          "name": "poitype",
+          "label": "Type"
+        },
+        {
+          "name": "lastupdate",
+          "label": "Last updated"
+        }
+      ],
+      "suggestedMinScale": 0,
+      "serviceMinScale": 60000,
+      "attribution": "© State of New South Wales (Spatial Services, Department of Customer Service)",
+      "licence": "Not stated in service metadata (NSW Government open data is generally CC BY 4.0 - confirm before reuse)",
+      "cors": "*",
+      "definitionExpression": "poitype = 'Library'",
+      "supportsPbf": false,
+      "verifiedSeconds": {
+        "metadata": 0.1,
+        "count": 0.1
+      },
+      "notes": "Set layer.minScale = 0 to override the service default of 60000. Other useful poitype values: 'Community Facility', 'Swimming Pool Facility', 'Sports Centre', 'Child Care Centre', 'Police Station', 'Fire Station', 'Railway Station', 'Bus Interchange'."
+    },
+    {
+      "id": "nsw-parks",
+      "title": "Parks (NSW Points of Interest)",
+      "theme": "community",
+      "keywords": [
+        "park",
+        "parks",
+        "open space",
+        "playground",
+        "green space",
+        "reserve",
+        "recreation"
+      ],
+      "coverage": "NSW",
+      "url": "https://maps.six.nsw.gov.au/arcgis/rest/services/public/NSW_POI/MapServer/0",
+      "type": "feature",
+      "geometryType": "point",
+      "featureCount": 15267,
+      "maxRecordCount": 1000,
+      "displayField": "poiname",
+      "popupFields": [
+        {
+          "name": "poiname",
+          "label": "Name"
+        },
+        {
+          "name": "poitype",
+          "label": "Type"
+        },
+        {
+          "name": "lastupdate",
+          "label": "Last updated"
+        }
+      ],
+      "suggestedMinScale": 150000,
+      "serviceMinScale": 60000,
+      "attribution": "© State of New South Wales (Spatial Services, Department of Customer Service)",
+      "licence": "Not stated in service metadata (NSW Government open data is generally CC BY 4.0 - confirm before reuse)",
+      "cors": "*",
+      "definitionExpression": "poitype = 'Park'",
+      "supportsPbf": false,
+      "verifiedSeconds": {
+        "metadata": 0.1,
+        "count": 0.1
+      },
+      "notes": "Park points (not polygons). 'Sports Field' and 'Picnic Area' are other poitype values."
+    },
+    {
+      "id": "sydney-tree-canopy-2022",
+      "title": "Tree canopy cover 2022 (Greater Sydney, by mesh block)",
+      "theme": "environment",
+      "keywords": [
+        "trees",
+        "tree canopy",
+        "canopy",
+        "green cover",
+        "shade",
+        "urban forest",
+        "greening",
+        "vegetation"
+      ],
+      "coverage": "Greater Sydney",
+      "url": "https://mapprod3.environment.nsw.gov.au/arcgis/rest/services/ePlanning/Planning_Portal_Tree_Canopy/MapServer/1",
+      "type": "feature",
+      "geometryType": "polygon",
+      "featureCount": 223706,
+      "maxRecordCount": 2000,
+      "displayField": "SA2_NAME16",
+      "popupFields": [
+        {
+          "name": "Canopy_Percentage",
+          "label": "Tree canopy (%)"
+        },
+        {
+          "name": "All_Veg_Percentage",
+          "label": "All vegetation (%)"
+        },
+        {
+          "name": "SA2_NAME16",
+          "label": "SA2"
+        },
+        {
+          "name": "ZN_PURPOSE",
+          "label": "Zone"
+        },
+        {
+          "name": "MB_CAT16",
+          "label": "Mesh block category"
+        }
+      ],
+      "suggestedMinScale": 100000,
+      "serviceMinScale": 100000,
+      "attribution": "© State of New South Wales (DPHI / Environment and Heritage)",
+      "licence": "Not stated in service metadata (NSW Government open data is generally CC BY 4.0 - confirm before reuse)",
+      "cors": "*",
+      "supportsPbf": true,
+      "verifiedSeconds": {
+        "metadata": 0,
+        "count": 0.1
+      },
+      "notes": "223k mesh-block polygons; service enforces minScale 100000. Canopy_Percentage suits a class-breaks renderer."
+    },
+    {
+      "id": "sydney-urban-heat-island-2016",
+      "title": "Urban heat island 2016 (Greater Sydney)",
+      "theme": "environment",
+      "keywords": [
+        "heat",
+        "urban heat",
+        "hot",
+        "temperature",
+        "heat island",
+        "UHI",
+        "climate",
+        "cooling"
+      ],
+      "coverage": "Greater Sydney",
+      "url": "https://mapprod2.environment.nsw.gov.au/arcgis/rest/services/UHGC/UHGC/MapServer/0",
+      "type": "feature",
+      "geometryType": "polygon",
+      "featureCount": 68102,
+      "maxRecordCount": 1000,
+      "displayField": "LGA",
+      "popupFields": [
+        {
+          "name": "UHI_16_m",
+          "label": "Heat island effect (°C above non-urban reference)"
+        },
+        {
+          "name": "LGA",
+          "label": "LGA"
+        },
+        {
+          "name": "District",
+          "label": "District"
+        },
+        {
+          "name": "MB_CAT16",
+          "label": "Mesh block category"
+        }
+      ],
+      "suggestedMinScale": 150000,
+      "serviceMinScale": 3000000,
+      "attribution": "© State of New South Wales (DPHI), Urban Heat and Greening data (SEED)",
+      "licence": "Not stated in service metadata (NSW Government open data is generally CC BY 4.0 - confirm before reuse)",
+      "cors": "https://chrislandvogt.github.io",
+      "supportsPbf": false,
+      "verifiedSeconds": {
+        "metadata": 0.1,
+        "count": 1.1
+      },
+      "notes": "68k mesh blocks. 10.81 server without PBF; queries ~1-3 s. CORS echoes the request origin rather than *."
+    },
+    {
+      "id": "sydney-heat-vulnerability-2022",
+      "title": "Heat vulnerability index 2022 (Greater Sydney, SA1)",
+      "theme": "environment",
+      "keywords": [
+        "heat",
+        "heat vulnerability",
+        "vulnerable",
+        "heatwave",
+        "climate risk",
+        "resilience",
+        "HVI"
+      ],
+      "coverage": "Greater Sydney",
+      "url": "https://mapprod2.environment.nsw.gov.au/arcgis/rest/services/UHGC/Heat_Vulnerability_Index_2022/MapServer/0",
+      "type": "feature",
+      "geometryType": "polygon",
+      "featureCount": 11225,
+      "maxRecordCount": 1000,
+      "displayField": "SA2_NAME21",
+      "popupFields": [
+        {
+          "name": "Heat_Vulnerability_Index",
+          "label": "Heat vulnerability (1-5)"
+        },
+        {
+          "name": "Heat_Exposure_Index",
+          "label": "Heat exposure (1-5)"
+        },
+        {
+          "name": "Heat_Sensitivity_Index",
+          "label": "Heat sensitivity (1-5)"
+        },
+        {
+          "name": "Adaptive_Capability_Index",
+          "label": "Adaptive capability (1-5)"
+        },
+        {
+          "name": "Per_Tree",
+          "label": "Tree cover (%)"
+        },
+        {
+          "name": "LGA_NAME_2022",
+          "label": "LGA"
+        }
+      ],
+      "suggestedMinScale": 250000,
+      "serviceMinScale": 0,
+      "attribution": "DPHI, RMIT (© State of New South Wales)",
+      "licence": "Not stated in service metadata (NSW Government open data is generally CC BY 4.0 - confirm before reuse)",
+      "cors": "https://chrislandvogt.github.io",
+      "supportsPbf": false,
+      "verifiedSeconds": {
+        "metadata": 0.1,
+        "count": 0.2
+      },
+      "notes": "Index values 1-5 (some null). CORS echoes the request origin rather than *."
+    },
+    {
+      "id": "national-major-streams",
+      "title": "Major named rivers and streams (BoM Geofabric)",
+      "theme": "environment",
+      "keywords": [
+        "river",
+        "rivers",
+        "creek",
+        "stream",
+        "waterway",
+        "waterways",
+        "water",
+        "catchment"
+      ],
+      "coverage": "National",
+      "url": "https://services-ap1.arcgis.com/ypkPEy1AmwPKGNNv/arcgis/rest/services/Geofabric_Surface_Hydrology_Cartography/FeatureServer/8",
+      "type": "feature",
+      "geometryType": "polyline",
+      "featureCount": 349958,
+      "maxRecordCount": 2000,
+      "displayField": "Name",
+      "popupFields": [
+        {
+          "name": "Name",
+          "label": "Name"
+        },
+        {
+          "name": "Hierarchy",
+          "label": "Hierarchy"
+        },
+        {
+          "name": "Perennial",
+          "label": "Perenniality"
+        }
+      ],
+      "suggestedMinScale": 200000,
+      "serviceMinScale": 202805,
+      "attribution": "© Commonwealth of Australia (Bureau of Meteorology) 2022, via Digital Atlas of Australia",
+      "licence": "CC BY 4.0",
+      "cors": "*",
+      "supportsPbf": true,
+      "verifiedSeconds": {
+        "metadata": 0.3,
+        "count": 0.3
+      },
+      "notes": "350k segments; service enforces minScale ~202805."
+    },
+    {
+      "id": "national-bushfires-live",
+      "title": "Near real-time bushfire extents",
+      "theme": "hazards",
+      "keywords": [
+        "bushfire",
+        "fire",
+        "fires",
+        "live",
+        "current fires",
+        "emergency",
+        "incident",
+        "burnt area"
+      ],
+      "coverage": "National",
+      "url": "https://services-ap1.arcgis.com/ypkPEy1AmwPKGNNv/arcgis/rest/services/Near_Real_Time_Bushfire_Boundaries_view/FeatureServer/3",
+      "type": "feature",
+      "geometryType": "polygon",
+      "featureCount": 112,
+      "maxRecordCount": 2000,
+      "displayField": "fire_name",
+      "popupFields": [
+        {
+          "name": "fire_name",
+          "label": "Fire name"
+        },
+        {
+          "name": "fire_type",
+          "label": "Fire type"
+        },
+        {
+          "name": "ignition_date",
+          "label": "Ignition date"
+        },
+        {
+          "name": "capt_date",
+          "label": "Captured"
+        },
+        {
+          "name": "area_ha",
+          "label": "Area (ha)"
+        },
+        {
+          "name": "agency",
+          "label": "Agency"
+        }
+      ],
+      "suggestedMinScale": 0,
+      "serviceMinScale": 589039,
+      "attribution": "© Commonwealth of Australia (Geoscience Australia), state fire agencies",
+      "licence": "CC BY 4.0",
+      "cors": "*",
+      "supportsPbf": true,
+      "verifiedSeconds": {
+        "metadata": 0.4,
+        "count": 0.1
+      },
+      "notes": "Live feed - feature count changes constantly and may be near zero for NSW on the day (14 NSW features at verification). Service enforces minScale ~589039 and maxScale ~624; set layer.minScale = 0 to see fires at state scale. Point layer /4 ('Location Points') also exists."
+    },
+    {
+      "id": "national-bushfire-history",
+      "title": "Historical bushfire boundaries",
+      "theme": "hazards",
+      "keywords": [
+        "fire history",
+        "past fires",
+        "burnt",
+        "Black Summer",
+        "bushfire history",
+        "fire scar"
+      ],
+      "coverage": "National",
+      "url": "https://services-ap1.arcgis.com/ypkPEy1AmwPKGNNv/arcgis/rest/services/Bushfire_Boundaries_Historic_Dec_view/FeatureServer/0",
+      "type": "feature",
+      "geometryType": "polygon",
+      "featureCount": 311984,
+      "maxRecordCount": 2000,
+      "displayField": "fire_name",
+      "popupFields": [
+        {
+          "name": "fire_name",
+          "label": "Fire name"
+        },
+        {
+          "name": "fire_type",
+          "label": "Fire type"
+        },
+        {
+          "name": "ignition_date",
+          "label": "Ignition date"
+        },
+        {
+          "name": "area_ha",
+          "label": "Area (ha)"
+        },
+        {
+          "name": "state",
+          "label": "State"
+        },
+        {
+          "name": "agency",
+          "label": "Agency"
+        }
+      ],
+      "suggestedMinScale": 250000,
+      "serviceMinScale": 0,
+      "attribution": "© Commonwealth of Australia (Geoscience Australia), state fire agencies",
+      "licence": "CC BY 4.0",
+      "cors": "*",
+      "supportsPbf": true,
+      "verifiedSeconds": {
+        "metadata": 0,
+        "count": 0
+      },
+      "notes": "312k polygons; filter by state = 'NSW' and/or ignition_date for a cleaner map (e.g. Black Summer 2019-20)."
+    },
+    {
+      "id": "nsw-aerial-imagery",
+      "title": "NSW aerial imagery (Spatial Services)",
+      "theme": "basemap",
+      "keywords": [
+        "aerial",
+        "imagery",
+        "satellite",
+        "photo",
+        "air photo",
+        "basemap"
+      ],
+      "coverage": "NSW",
+      "url": "https://maps.six.nsw.gov.au/arcgis/rest/services/public/NSW_Imagery/MapServer",
+      "type": "tile",
+      "geometryType": null,
+      "featureCount": null,
+      "maxRecordCount": null,
+      "displayField": null,
+      "popupFields": [],
+      "suggestedMinScale": 0,
+      "serviceMinScale": null,
+      "attribution": "© State of New South Wales (Spatial Services, Department of Customer Service)",
+      "licence": "Not stated in service metadata (NSW Government open data is generally CC BY 4.0 - confirm before reuse)",
+      "cors": "*",
+      "notes": "Cached Web Mercator tiles to level 23 (~1:70). Use as TileLayer in a custom Basemap; tile request verified (image/jpeg, CORS *)."
+    },
+    {
+      "id": "vic-lga",
+      "title": "Local Government Areas (Vicmap Admin)",
+      "theme": "boundaries",
+      "keywords": [
+        "council",
+        "LGA",
+        "local government area",
+        "shire",
+        "city",
+        "boundary",
+        "my council",
+        "municipality"
+      ],
+      "coverage": "Victoria",
+      "url": "https://services-ap1.arcgis.com/P744lA0wf4LlBZ84/arcgis/rest/services/Vicmap_Admin/FeatureServer/9",
+      "type": "feature",
+      "geometryType": "polygon",
+      "featureCount": 87,
+      "maxRecordCount": 2000,
+      "displayField": "lga_name",
+      "popupFields": [
+        {
+          "name": "lga_name",
+          "label": "LGA"
+        },
+        {
+          "name": "lga_official_name",
+          "label": "Official name"
+        },
+        {
+          "name": "lga_code",
+          "label": "Vicmap LGA code"
+        },
+        {
+          "name": "abs_lga_code",
+          "label": "ABS LGA code"
+        }
+      ],
+      "suggestedMinScale": 0,
+      "serviceMinScale": 0,
+      "attribution": "© State of Victoria (Department of Transport and Planning), Vicmap",
+      "licence": "CC BY 4.0 (Vicmap item licence; excludes logos, branding and third-party content)",
+      "cors": "*",
+      "supportsPbf": true,
+      "verifiedSeconds": {
+        "metadata": 0.3,
+        "count": 0.1
+      },
+      "notes": "Current gazetted boundaries aligned to Vicmap Property (e.g. 'MERRI-BEK', not the ABS 2021 'Moreland'). 87 polygons = 79 councils + 8 unincorporated areas whose lga_name ends in '(UNINC)' - filter with \"lga_name NOT LIKE '%(UNINC)'\" for councils only. Names are upper case. Geometry is heavy (~150 KB per LGA at full resolution) but the service supports PBF/quantization."
+    },
+    {
+      "id": "vic-localities",
+      "title": "Suburbs and localities (Vicmap Admin)",
+      "theme": "boundaries",
+      "keywords": [
+        "suburb",
+        "suburbs",
+        "locality",
+        "town",
+        "neighbourhood",
+        "boundary"
+      ],
+      "coverage": "Victoria",
+      "url": "https://services-ap1.arcgis.com/P744lA0wf4LlBZ84/arcgis/rest/services/Vicmap_Admin/FeatureServer/11",
+      "type": "feature",
+      "geometryType": "polygon",
+      "featureCount": 2973,
+      "maxRecordCount": 2000,
+      "displayField": "locality_name",
+      "popupFields": [
+        {
+          "name": "locality_name",
+          "label": "Suburb / locality"
+        },
+        {
+          "name": "gazetted_locality_name",
+          "label": "Gazetted name"
+        }
+      ],
+      "suggestedMinScale": 500000,
+      "serviceMinScale": 0,
+      "attribution": "© State of Victoria (Department of Transport and Planning), Vicmap",
+      "licence": "CC BY 4.0 (Vicmap item licence; excludes logos, branding and third-party content)",
+      "cors": "*",
+      "supportsPbf": true,
+      "verifiedSeconds": {
+        "metadata": 0.3,
+        "count": 0.1
+      },
+      "notes": "Official gazetted localities (2,973). Names are upper case."
+    },
+    {
+      "id": "vic-planning-zones",
+      "title": "Planning scheme zones (Vicmap Planning)",
+      "theme": "planning",
+      "keywords": [
+        "zoning",
+        "zone",
+        "planning zone",
+        "land use",
+        "GRZ",
+        "residential",
+        "industrial",
+        "planning scheme",
+        "DA",
+        "permit"
+      ],
+      "coverage": "Victoria",
+      "url": "https://services-ap1.arcgis.com/P744lA0wf4LlBZ84/arcgis/rest/services/Vicmap_Planning/FeatureServer/3",
+      "type": "feature",
+      "geometryType": "polygon",
+      "featureCount": 51266,
+      "maxRecordCount": 2000,
+      "displayField": "zone_code",
+      "popupFields": [
+        {
+          "name": "zone_code",
+          "label": "Zone"
+        },
+        {
+          "name": "zone_description",
+          "label": "Zone description"
+        },
+        {
+          "name": "lga",
+          "label": "LGA"
+        },
+        {
+          "name": "scheme_code",
+          "label": "Planning scheme"
+        },
+        {
+          "name": "gaz_begin_date",
+          "label": "Gazetted"
+        }
+      ],
+      "suggestedMinScale": 100000,
+      "serviceMinScale": 0,
+      "attribution": "© State of Victoria (Department of Transport and Planning), Vicmap",
+      "licence": "CC BY 4.0 (Vicmap item licence; excludes logos, branding and third-party content)",
+      "cors": "*",
+      "supportsPbf": true,
+      "verifiedSeconds": {
+        "metadata": 0.6,
+        "count": 0.3
+      },
+      "notes": "51k polygons. zone_code holds codes such as GRZ1, NRZ1, C1Z, IN1Z - group by prefix for a unique-value renderer. Metadata displayField is upper case (SCHEME_CODE) but real field names are lower case."
+    },
+    {
+      "id": "vic-flood-overlays",
+      "title": "Flood overlays: LSIO, FO, SBO (Vicmap Planning)",
+      "theme": "planning",
+      "keywords": [
+        "flood",
+        "flooding",
+        "LSIO",
+        "land subject to inundation",
+        "floodway",
+        "special building overlay",
+        "SBO",
+        "overland flow",
+        "hazard"
+      ],
+      "coverage": "Victoria",
+      "url": "https://services-ap1.arcgis.com/P744lA0wf4LlBZ84/arcgis/rest/services/Vicmap_Planning/FeatureServer/2",
+      "type": "feature",
+      "geometryType": "polygon",
+      "featureCount": 42568,
+      "maxRecordCount": 2000,
+      "displayField": "zone_code",
+      "popupFields": [
+        {
+          "name": "zone_code",
+          "label": "Overlay"
+        },
+        {
+          "name": "zone_description",
+          "label": "Description"
+        },
+        {
+          "name": "lga",
+          "label": "LGA"
+        },
+        {
+          "name": "scheme_code",
+          "label": "Planning scheme"
+        },
+        {
+          "name": "gaz_begin_date",
+          "label": "Gazetted"
+        }
+      ],
+      "suggestedMinScale": 100000,
+      "serviceMinScale": 0,
+      "attribution": "© State of Victoria (Department of Transport and Planning), Vicmap",
+      "licence": "CC BY 4.0 (Vicmap item licence; excludes logos, branding and third-party content)",
+      "cors": "*",
+      "definitionExpression": "zone_code LIKE 'LSIO%' OR zone_code LIKE 'FO%' OR zone_code LIKE 'SBO%'",
+      "supportsPbf": true,
+      "verifiedSeconds": {
+        "metadata": 0.5,
+        "count": 0.5
+      },
+      "notes": "Land Subject to Inundation Overlay, Floodway Overlay and Special Building Overlay from the shared overlay layer. Overlay polygons are detailed (~125 KB each at full resolution); keep a scale limit."
+    },
+    {
+      "id": "vic-bushfire-management-overlay",
+      "title": "Bushfire Management Overlay (Vicmap Planning)",
+      "theme": "planning",
+      "keywords": [
+        "bushfire",
+        "BMO",
+        "bushfire management overlay",
+        "fire",
+        "hazard",
+        "planning overlay"
+      ],
+      "coverage": "Victoria",
+      "url": "https://services-ap1.arcgis.com/P744lA0wf4LlBZ84/arcgis/rest/services/Vicmap_Planning/FeatureServer/2",
+      "type": "feature",
+      "geometryType": "polygon",
+      "featureCount": 5226,
+      "maxRecordCount": 2000,
+      "displayField": "zone_code",
+      "popupFields": [
+        {
+          "name": "zone_code",
+          "label": "Overlay"
+        },
+        {
+          "name": "zone_description",
+          "label": "Description"
+        },
+        {
+          "name": "lga",
+          "label": "LGA"
+        },
+        {
+          "name": "scheme_code",
+          "label": "Planning scheme"
+        },
+        {
+          "name": "gaz_begin_date",
+          "label": "Gazetted"
+        }
+      ],
+      "suggestedMinScale": 250000,
+      "serviceMinScale": 0,
+      "attribution": "© State of Victoria (Department of Transport and Planning), Vicmap",
+      "licence": "CC BY 4.0 (Vicmap item licence; excludes logos, branding and third-party content)",
+      "cors": "*",
+      "definitionExpression": "zone_code LIKE 'BMO%'",
+      "supportsPbf": true,
+      "verifiedSeconds": {
+        "metadata": 0.0,
+        "count": 0.4
+      }
+    },
+    {
+      "id": "vic-heritage-overlay",
+      "title": "Heritage Overlay (Vicmap Planning)",
+      "theme": "planning",
+      "keywords": [
+        "heritage",
+        "heritage overlay",
+        "HO",
+        "heritage place",
+        "historic",
+        "conservation"
+      ],
+      "coverage": "Victoria",
+      "url": "https://services-ap1.arcgis.com/P744lA0wf4LlBZ84/arcgis/rest/services/Vicmap_Planning/FeatureServer/2",
+      "type": "feature",
+      "geometryType": "polygon",
+      "featureCount": 25049,
+      "maxRecordCount": 2000,
+      "displayField": "zone_code",
+      "popupFields": [
+        {
+          "name": "zone_code",
+          "label": "Overlay"
+        },
+        {
+          "name": "zone_description",
+          "label": "Description"
+        },
+        {
+          "name": "lga",
+          "label": "LGA"
+        },
+        {
+          "name": "scheme_code",
+          "label": "Planning scheme"
+        },
+        {
+          "name": "gaz_begin_date",
+          "label": "Gazetted"
+        }
+      ],
+      "suggestedMinScale": 50000,
+      "serviceMinScale": 0,
+      "attribution": "© State of Victoria (Department of Transport and Planning), Vicmap",
+      "licence": "CC BY 4.0 (Vicmap item licence; excludes logos, branding and third-party content)",
+      "cors": "*",
+      "definitionExpression": "zone_code LIKE 'HO%'",
+      "supportsPbf": true,
+      "verifiedSeconds": {
+        "metadata": 0.0,
+        "count": 0.5
+      },
+      "notes": "zone_code is the schedule number (e.g. HO30) - the heritage place name is in the planning scheme schedule, not in this layer."
+    },
+    {
+      "id": "vic-bushfire-prone-areas",
+      "title": "Bushfire Prone Areas (Vicmap Planning)",
+      "theme": "planning",
+      "keywords": [
+        "bushfire prone",
+        "BPA",
+        "bushfire",
+        "fire",
+        "BAL",
+        "building regulations",
+        "hazard"
+      ],
+      "coverage": "Victoria",
+      "url": "https://services-ap1.arcgis.com/P744lA0wf4LlBZ84/arcgis/rest/services/Vicmap_Planning/FeatureServer/9",
+      "type": "feature",
+      "geometryType": "polygon",
+      "featureCount": 76,
+      "maxRecordCount": 2000,
+      "displayField": "lga_name",
+      "popupFields": [
+        {
+          "name": "lga_name",
+          "label": "LGA"
+        },
+        {
+          "name": "plan_number",
+          "label": "Plan number"
+        },
+        {
+          "name": "gazettal_date",
+          "label": "Gazettal date"
+        },
+        {
+          "name": "bpa_area_ha",
+          "label": "Area (ha)"
+        }
+      ],
+      "suggestedMinScale": 0,
+      "serviceMinScale": 0,
+      "attribution": "© State of Victoria (Department of Transport and Planning), Vicmap",
+      "licence": "CC BY 4.0 (Vicmap item licence; excludes logos, branding and third-party content)",
+      "cors": "*",
+      "supportsPbf": true,
+      "verifiedSeconds": {
+        "metadata": 0.6,
+        "count": 0.1
+      },
+      "notes": "Only 76 features but each is one huge multipart polygon (~450 KB at full resolution; 5 features took 1.7 s). Fine with PBF/quantization at state scale, but avoid outFields=* full-geometry queries."
+    },
+    {
+      "id": "vic-parcels",
+      "title": "Land parcels (Vicmap Property)",
+      "theme": "planning",
+      "keywords": [
+        "parcel",
+        "lot",
+        "property",
+        "lot on plan",
+        "SPI",
+        "cadastre",
+        "title",
+        "block"
+      ],
+      "coverage": "Victoria",
+      "url": "https://services-ap1.arcgis.com/P744lA0wf4LlBZ84/arcgis/rest/services/Vicmap_Parcel/FeatureServer/0",
+      "type": "feature",
+      "geometryType": "polygon",
+      "featureCount": 4312762,
+      "maxRecordCount": 2000,
+      "displayField": "parcel_spi",
+      "popupFields": [
+        {
+          "name": "parcel_spi",
+          "label": "Parcel (SPI)"
+        },
+        {
+          "name": "parcel_lot_number",
+          "label": "Lot"
+        },
+        {
+          "name": "parcel_plan_number",
+          "label": "Plan"
+        },
+        {
+          "name": "parcel_crown_status",
+          "label": "Crown status"
+        },
+        {
+          "name": "parcel_desc_type",
+          "label": "Description type"
+        }
+      ],
+      "suggestedMinScale": 10000,
+      "serviceMinScale": 0,
+      "attribution": "© State of Victoria (Department of Transport and Planning), Vicmap",
+      "licence": "CC BY 4.0 (Vicmap item licence; excludes logos, branding and third-party content)",
+      "cors": "*",
+      "supportsPbf": true,
+      "verifiedSeconds": {
+        "metadata": 0.7,
+        "count": 0.1
+      },
+      "notes": "About 4.3M parcels. Hosted with PBF, so extent queries and even full counts are fast, but keep minScale <= 10000. No owner or valuation fields in this layer."
+    },
+    {
+      "id": "vic-pt-stops",
+      "title": "Public transport stops: train, tram, bus (DTP)",
+      "theme": "transport",
+      "keywords": [
+        "bus stop",
+        "tram stop",
+        "train station",
+        "public transport",
+        "PTV",
+        "transit",
+        "stops",
+        "commute"
+      ],
+      "coverage": "Victoria",
+      "url": "https://services-ap1.arcgis.com/sRWrfkKjSushj6ql/arcgis/rest/services/Public_Transport/FeatureServer/1",
+      "type": "feature",
+      "geometryType": "point",
+      "featureCount": 32073,
+      "maxRecordCount": 2000,
+      "displayField": "STOP_NAME",
+      "popupFields": [
+        {
+          "name": "STOP_NAME",
+          "label": "Stop"
+        },
+        {
+          "name": "MODE",
+          "label": "Mode"
+        },
+        {
+          "name": "STOP_ID",
+          "label": "Stop ID"
+        }
+      ],
+      "suggestedMinScale": 100000,
+      "serviceMinScale": 0,
+      "attribution": "© State of Victoria (Department of Transport and Planning), DTP Open Data Platform",
+      "licence": "Not stated in item metadata (DTP Open Data Platform; Victorian Government open data is generally CC BY 4.0 - confirm before reuse)",
+      "cors": "*",
+      "supportsPbf": true,
+      "verifiedSeconds": {
+        "metadata": 0.3,
+        "count": 0.3
+      },
+      "notes": "32k stops. MODE values: METRO BUS, METRO TRAM, METRO TRAIN, REGIONAL BUS, REGIONAL TRAIN, REGIONAL COACH, SKYBUS, INTERSTATE TRAIN - filter e.g. \"MODE = 'METRO TRAIN'\" (2,868) for stations at state scale."
+    },
+    {
+      "id": "vic-pt-routes",
+      "title": "Public transport routes: train, tram, bus (DTP)",
+      "theme": "transport",
+      "keywords": [
+        "bus route",
+        "tram route",
+        "train line",
+        "public transport",
+        "PTV",
+        "transit",
+        "network"
+      ],
+      "coverage": "Victoria",
+      "url": "https://services-ap1.arcgis.com/sRWrfkKjSushj6ql/arcgis/rest/services/Public_Transport/FeatureServer/0",
+      "type": "feature",
+      "geometryType": "polyline",
+      "featureCount": 15660,
+      "maxRecordCount": 2000,
+      "displayField": "LONG_NAME",
+      "popupFields": [
+        {
+          "name": "SHORT_NAME",
+          "label": "Route"
+        },
+        {
+          "name": "LONG_NAME",
+          "label": "Route name"
+        },
+        {
+          "name": "MODE",
+          "label": "Mode"
+        },
+        {
+          "name": "HEADSIGN",
+          "label": "Headsign"
+        }
+      ],
+      "suggestedMinScale": 250000,
+      "serviceMinScale": 0,
+      "attribution": "© State of Victoria (Department of Transport and Planning), DTP Open Data Platform",
+      "licence": "Not stated in item metadata (DTP Open Data Platform; Victorian Government open data is generally CC BY 4.0 - confirm before reuse)",
+      "cors": "*",
+      "supportsPbf": true,
+      "verifiedSeconds": {
+        "metadata": 0.2,
+        "count": 0.3
+      },
+      "notes": "HEAVY: 15,660 GTFS shapes (one per route variant and direction, so lines overlap); 5 features = ~240 KB at full resolution. Always filter by MODE (same values as vic-pt-stops), e.g. \"MODE = 'METRO TRAM'\"."
+    },
+    {
+      "id": "vic-road-crashes",
+      "title": "Road crashes 2012-2026 (DTP)",
+      "theme": "transport",
+      "keywords": [
+        "crash",
+        "crashes",
+        "accident",
+        "road safety",
+        "collision",
+        "fatal",
+        "injury",
+        "black spot",
+        "pedestrian"
+      ],
+      "coverage": "Victoria",
+      "url": "https://services-ap1.arcgis.com/sRWrfkKjSushj6ql/arcgis/rest/services/road_crash/FeatureServer/0",
+      "type": "feature",
+      "geometryType": "point",
+      "featureCount": 202297,
+      "maxRecordCount": 2000,
+      "displayField": "ACCIDENT_TYPE",
+      "popupFields": [
+        {
+          "name": "ACCIDENT_DATE",
+          "label": "Date"
+        },
+        {
+          "name": "SEVERITY",
+          "label": "Severity"
+        },
+        {
+          "name": "ACCIDENT_TYPE",
+          "label": "Crash type"
+        },
+        {
+          "name": "ROAD_NAME",
+          "label": "Road"
+        },
+        {
+          "name": "SPEED_ZONE",
+          "label": "Speed zone"
+        },
+        {
+          "name": "LGA_NAME",
+          "label": "LGA"
+        }
+      ],
+      "suggestedMinScale": 150000,
+      "serviceMinScale": 0,
+      "attribution": "© State of Victoria (Department of Transport and Planning), DTP Open Data Platform (Victoria Police and hospital data)",
+      "licence": "Not stated in item metadata (DTP Open Data Platform; Victorian Government open data is generally CC BY 4.0 - confirm before reuse)",
+      "cors": "*",
+      "supportsPbf": true,
+      "verifiedSeconds": {
+        "metadata": 0.4,
+        "count": 0.3
+      },
+      "notes": "202k crash points from Jan 2012 to Feb 2026 (monthly updates with ~7-month lag; recent fatal crashes provisional). SEVERITY values: Fatal accident, Serious injury accident, Other injury accident. ACCIDENT_DATE is a DateOnly field; filter with the integer ACCIDENT_DATE_INT instead (e.g. ACCIDENT_DATE_INT >= 20240101). No personal identifiers; person fields are counts only."
+    },
+    {
+      "id": "vic-traffic-volume",
+      "title": "Traffic volumes (AADT 2019, DTP)",
+      "theme": "transport",
+      "keywords": [
+        "traffic",
+        "traffic volume",
+        "AADT",
+        "traffic counts",
+        "congestion",
+        "busy roads",
+        "trucks",
+        "heavy vehicles"
+      ],
+      "coverage": "Victoria (DTP-managed arterial roads)",
+      "url": "https://services-ap1.arcgis.com/sRWrfkKjSushj6ql/arcgis/rest/services/AADT_Traffic_Volume_2019/FeatureServer/0",
+      "type": "feature",
+      "geometryType": "polyline",
+      "featureCount": 14662,
+      "maxRecordCount": 2000,
+      "displayField": "Road_Name",
+      "popupFields": [
+        {
+          "name": "Road_Name",
+          "label": "Road"
+        },
+        {
+          "name": "Road_Section_Description",
+          "label": "Section"
+        },
+        {
+          "name": "Average_Annual_Daily_Traffic_V",
+          "label": "Average daily traffic"
+        },
+        {
+          "name": "Average_Annual_Daily_Heavy_Veh",
+          "label": "Average daily heavy vehicles"
+        },
+        {
+          "name": "Percentage_of_Heavy_Vehicles",
+          "label": "Heavy vehicles (%)"
+        },
+        {
+          "name": "Travel_Direction",
+          "label": "Direction"
+        }
+      ],
+      "suggestedMinScale": 0,
+      "serviceMinScale": 0,
+      "attribution": "© State of Victoria (Department of Transport and Planning), DTP Open Data Platform",
+      "licence": "Not stated in item metadata (DTP Open Data Platform; Victorian Government open data is generally CC BY 4.0 - confirm before reuse)",
+      "cors": "*",
+      "supportsPbf": true,
+      "verifiedSeconds": {
+        "metadata": 0.3,
+        "count": 0.3
+      },
+      "notes": "2019 (pre-COVID) annual average daily traffic by road segment and direction; arterial roads only. Good for a graduated-width line renderer."
+    },
+    {
+      "id": "vic-schools",
+      "title": "Schools (Vicmap Features of Interest)",
+      "theme": "community",
+      "keywords": [
+        "school",
+        "schools",
+        "primary school",
+        "secondary school",
+        "high school",
+        "education",
+        "kids"
+      ],
+      "coverage": "Victoria",
+      "url": "https://services-ap1.arcgis.com/P744lA0wf4LlBZ84/arcgis/rest/services/Vicmap_Features_of_Interest/FeatureServer/1",
+      "type": "feature",
+      "geometryType": "point",
+      "featureCount": 3773,
+      "maxRecordCount": 2000,
+      "displayField": "name",
+      "popupFields": [
+        {
+          "name": "name",
+          "label": "Name"
+        },
+        {
+          "name": "feature_subtype",
+          "label": "Type"
+        },
+        {
+          "name": "parent_name",
+          "label": "Part of"
+        }
+      ],
+      "suggestedMinScale": 0,
+      "serviceMinScale": 0,
+      "attribution": "© State of Victoria (Department of Transport and Planning), Vicmap",
+      "licence": "CC BY 4.0 (Vicmap item licence; excludes logos, branding and third-party content)",
+      "cors": "*",
+      "definitionExpression": "feature_type = 'education centre' AND feature_subtype IN ('primary school','secondary school','primary/secondary school','special school')",
+      "supportsPbf": true,
+      "verifiedSeconds": {
+        "metadata": 0.3,
+        "count": 0.6
+      },
+      "notes": "Government and non-government schools (no sector field). Other education subtypes: 'tertiary institution', 'university', 'further education'."
+    },
+    {
+      "id": "vic-hospitals",
+      "title": "Hospitals (Vicmap Features of Interest)",
+      "theme": "community",
+      "keywords": [
+        "hospital",
+        "hospitals",
+        "health",
+        "emergency department",
+        "medical"
+      ],
+      "coverage": "Victoria",
+      "url": "https://services-ap1.arcgis.com/P744lA0wf4LlBZ84/arcgis/rest/services/Vicmap_Features_of_Interest/FeatureServer/1",
+      "type": "feature",
+      "geometryType": "point",
+      "featureCount": 378,
+      "maxRecordCount": 2000,
+      "displayField": "name",
+      "popupFields": [
+        {
+          "name": "name",
+          "label": "Name"
+        },
+        {
+          "name": "feature_subtype",
+          "label": "Type"
+        },
+        {
+          "name": "parent_name",
+          "label": "Part of"
+        }
+      ],
+      "suggestedMinScale": 0,
+      "serviceMinScale": 0,
+      "attribution": "© State of Victoria (Department of Transport and Planning), Vicmap",
+      "licence": "CC BY 4.0 (Vicmap item licence; excludes logos, branding and third-party content)",
+      "cors": "*",
+      "definitionExpression": "feature_type = 'hospital'",
+      "supportsPbf": true,
+      "verifiedSeconds": {
+        "metadata": 0.0,
+        "count": 0.4
+      },
+      "notes": "feature_subtype: general hospital, day procedure centre, bush nursing hospital. Public and private. feature_type 'health facility' holds other health services."
+    },
+    {
+      "id": "vic-libraries",
+      "title": "Libraries (Vicmap Features of Interest)",
+      "theme": "community",
+      "keywords": [
+        "library",
+        "libraries",
+        "community facility",
+        "books"
+      ],
+      "coverage": "Victoria",
+      "url": "https://services-ap1.arcgis.com/P744lA0wf4LlBZ84/arcgis/rest/services/Vicmap_Features_of_Interest/FeatureServer/1",
+      "type": "feature",
+      "geometryType": "point",
+      "featureCount": 325,
+      "maxRecordCount": 2000,
+      "displayField": "name",
+      "popupFields": [
+        {
+          "name": "name",
+          "label": "Name"
+        },
+        {
+          "name": "feature_subtype",
+          "label": "Type"
+        },
+        {
+          "name": "parent_name",
+          "label": "Part of"
+        }
+      ],
+      "suggestedMinScale": 0,
+      "serviceMinScale": 0,
+      "attribution": "© State of Victoria (Department of Transport and Planning), Vicmap",
+      "licence": "CC BY 4.0 (Vicmap item licence; excludes logos, branding and third-party content)",
+      "cors": "*",
+      "definitionExpression": "feature_type = 'cultural centre' AND feature_subtype = 'library'",
+      "supportsPbf": true,
+      "verifiedSeconds": {
+        "metadata": 0.2,
+        "count": 0.4
+      },
+      "notes": "Other useful FOI point filters: feature_type 'community venue' (hall, community centre, senior citizens, neighbourhood house), 'emergency facility' (fire/police/ambulance stations, 'neighbourhood safer place'), 'sport facility'."
+    },
+    {
+      "id": "vic-parks-reserves",
+      "title": "Parks and reserves (Vicmap Features of Interest)",
+      "theme": "community",
+      "keywords": [
+        "park",
+        "parks",
+        "open space",
+        "reserve",
+        "national park",
+        "gardens",
+        "green space",
+        "recreation"
+      ],
+      "coverage": "Victoria",
+      "url": "https://services-ap1.arcgis.com/P744lA0wf4LlBZ84/arcgis/rest/services/Vicmap_Features_of_Interest/FeatureServer/3",
+      "type": "feature",
+      "geometryType": "polygon",
+      "featureCount": 28069,
+      "maxRecordCount": 2000,
+      "displayField": "name",
+      "popupFields": [
+        {
+          "name": "name",
+          "label": "Name"
+        },
+        {
+          "name": "feature_subtype",
+          "label": "Type"
+        },
+        {
+          "name": "parent_name",
+          "label": "Part of"
+        }
+      ],
+      "suggestedMinScale": 250000,
+      "serviceMinScale": 0,
+      "attribution": "© State of Victoria (Department of Transport and Planning), Vicmap",
+      "licence": "CC BY 4.0 (Vicmap item licence; excludes logos, branding and third-party content)",
+      "cors": "*",
+      "definitionExpression": "feature_type = 'reserve' AND feature_subtype IN ('park','gardens','conservation park','national park')",
+      "supportsPbf": true,
+      "verifiedSeconds": {
+        "metadata": 0.3,
+        "count": 0.5
+      },
+      "notes": "Polygons (not points). Mostly 'park' (27k). Parks Victoria's own estate layer was not found on a public ArcGIS REST endpoint."
+    },
+    {
+      "id": "vic-urban-heat-2018",
+      "title": "Urban heat and vegetation cover 2018 by suburb (Melbourne)",
+      "theme": "environment",
+      "keywords": [
+        "heat",
+        "urban heat",
+        "heat island",
+        "UHI",
+        "hot",
+        "temperature",
+        "tree cover",
+        "canopy",
+        "cooling",
+        "greening"
+      ],
+      "coverage": "Metropolitan Melbourne",
+      "url": "https://plan-gis.mapshare.vic.gov.au/arcgis/rest/services/CoolingGreening/CoolingGreening/MapServer/54",
+      "type": "feature",
+      "geometryType": "polygon",
+      "featureCount": 442,
+      "maxRecordCount": 1000,
+      "displayField": "LOCALITY",
+      "popupFields": [
+        {
+          "name": "LOCALITY",
+          "label": "Suburb"
+        },
+        {
+          "name": "UHI18_M",
+          "label": "Urban heat island effect (°C)"
+        },
+        {
+          "name": "PERANYTREE",
+          "label": "Tree cover (%)"
+        },
+        {
+          "name": "PERANYVEG",
+          "label": "All vegetation (%)"
+        },
+        {
+          "name": "PERGRASS",
+          "label": "Grass (%)"
+        }
+      ],
+      "suggestedMinScale": 0,
+      "serviceMinScale": 0,
+      "attribution": "© State of Victoria (DTP / DEECA), Cooling and Greening Melbourne",
+      "licence": "Not stated in service metadata (Victorian Government open data is generally CC BY 4.0 - confirm before reuse)",
+      "cors": "https://chrislandvogt.github.io",
+      "supportsPbf": false,
+      "verifiedSeconds": {
+        "metadata": 0.1,
+        "count": 0.0
+      },
+      "notes": "442 suburbs. Mesh-block version (54k polygons) at .../CoolingGreening/MapServer/55; 2014 equivalents also in the service. 10.81 server: no PBF; CORS echoes the request origin."
+    },
+    {
+      "id": "vic-heat-vulnerability-2018",
+      "title": "Heat vulnerability index 2018 by suburb (Melbourne)",
+      "theme": "environment",
+      "keywords": [
+        "heat vulnerability",
+        "heatwave",
+        "vulnerable",
+        "climate risk",
+        "resilience",
+        "HVI",
+        "heat"
+      ],
+      "coverage": "Metropolitan Melbourne",
+      "url": "https://plan-gis.mapshare.vic.gov.au/arcgis/rest/services/CoolingGreening/CoolingGreening/MapServer/62",
+      "type": "feature",
+      "geometryType": "polygon",
+      "featureCount": 428,
+      "maxRecordCount": 1000,
+      "displayField": "LOCALITY",
+      "popupFields": [
+        {
+          "name": "LOCALITY",
+          "label": "Suburb"
+        },
+        {
+          "name": "HVI_2018",
+          "label": "Heat vulnerability index (0-5)"
+        }
+      ],
+      "suggestedMinScale": 0,
+      "serviceMinScale": 0,
+      "attribution": "© State of Victoria (DTP / DEECA), Cooling and Greening Melbourne",
+      "licence": "Not stated in service metadata (Victorian Government open data is generally CC BY 4.0 - confirm before reuse)",
+      "cors": "https://chrislandvogt.github.io",
+      "supportsPbf": false,
+      "verifiedSeconds": {
+        "metadata": 0.0,
+        "count": 0.0
+      },
+      "notes": "428 suburbs; HVI_2018 ranges 0-5 (higher = more vulnerable). No PBF; CORS echoes origin."
+    },
+    {
+      "id": "vic-tree-cover-2018-meshblock",
+      "title": "Tree cover 2018 by mesh block (Melbourne)",
+      "theme": "environment",
+      "keywords": [
+        "trees",
+        "tree canopy",
+        "canopy",
+        "tree cover",
+        "urban forest",
+        "shade",
+        "greening",
+        "vegetation"
+      ],
+      "coverage": "Metropolitan Melbourne",
+      "url": "https://plan-gis.mapshare.vic.gov.au/arcgis/rest/services/CoolingGreening/CoolingGreening/MapServer/25",
+      "type": "feature",
+      "geometryType": "polygon",
+      "featureCount": 54146,
+      "maxRecordCount": 1000,
+      "displayField": "SA2_NAME16",
+      "popupFields": [
+        {
+          "name": "PERANYTREE",
+          "label": "Tree cover (%)"
+        },
+        {
+          "name": "PERANYVEG",
+          "label": "All vegetation (%)"
+        },
+        {
+          "name": "PERTR15PL",
+          "label": "Large trees 15m+ (%)"
+        },
+        {
+          "name": "SA2_NAME16",
+          "label": "SA2"
+        },
+        {
+          "name": "LGA_NAME16",
+          "label": "LGA"
+        },
+        {
+          "name": "MB_CAT16",
+          "label": "Mesh block category"
+        }
+      ],
+      "suggestedMinScale": 100000,
+      "serviceMinScale": 0,
+      "attribution": "© State of Victoria (DTP / DEECA), Cooling and Greening Melbourne",
+      "licence": "Not stated in service metadata (Victorian Government open data is generally CC BY 4.0 - confirm before reuse)",
+      "cors": "https://chrislandvogt.github.io",
+      "supportsPbf": false,
+      "verifiedSeconds": {
+        "metadata": 0.0,
+        "count": 0.5
+      },
+      "notes": "54k mesh blocks; 10.81 server without PBF - keep the scale limit. LGA names are 2016 (e.g. Moreland)."
+    },
+    {
+      "id": "vic-waterways",
+      "title": "Rivers and creeks - major and medium (Vicmap Hydro)",
+      "theme": "environment",
+      "keywords": [
+        "river",
+        "rivers",
+        "creek",
+        "waterway",
+        "waterways",
+        "stream",
+        "water",
+        "catchment"
+      ],
+      "coverage": "Victoria",
+      "url": "https://services-ap1.arcgis.com/P744lA0wf4LlBZ84/arcgis/rest/services/Vicmap_Hydro/FeatureServer/4",
+      "type": "feature",
+      "geometryType": "polyline",
+      "featureCount": 113514,
+      "maxRecordCount": 2000,
+      "displayField": "name",
+      "popupFields": [
+        {
+          "name": "name",
+          "label": "Name"
+        },
+        {
+          "name": "hierarchy",
+          "label": "Hierarchy (H/M/L)"
+        },
+        {
+          "name": "feature_type_code",
+          "label": "Feature type"
+        }
+      ],
+      "suggestedMinScale": 250000,
+      "serviceMinScale": 0,
+      "attribution": "© State of Victoria (Department of Transport and Planning), Vicmap",
+      "licence": "CC BY 4.0 (Vicmap item licence; excludes logos, branding and third-party content)",
+      "cors": "*",
+      "definitionExpression": "hierarchy IN ('H','M')",
+      "supportsPbf": true,
+      "verifiedSeconds": {
+        "metadata": 0.2,
+        "count": 21.5
+      },
+      "notes": "The full watercourse network has 1.83M segments; this filter keeps hierarchy H and M (~114k). Drop the filter only below 1:25,000."
+    },
+    {
+      "id": "vic-fire-history",
+      "title": "Fire history - bushfires 1903-2025 (DEECA)",
+      "theme": "hazards",
+      "keywords": [
+        "fire history",
+        "past fires",
+        "bushfire history",
+        "Black Saturday",
+        "Black Summer",
+        "burnt",
+        "fire scar"
+      ],
+      "coverage": "Victoria",
+      "url": "https://emap.ffm.vic.gov.au/arcgis/rest/services/ext_incidents_public/MapServer/9",
+      "type": "feature",
+      "geometryType": "polygon",
+      "featureCount": 628308,
+      "maxRecordCount": 1000,
+      "displayField": "NAME",
+      "popupFields": [
+        {
+          "name": "NAME",
+          "label": "Fire name"
+        },
+        {
+          "name": "SEASON",
+          "label": "Season"
+        },
+        {
+          "name": "START_DATE",
+          "label": "Start date"
+        },
+        {
+          "name": "AREA_HA",
+          "label": "Area (ha)"
+        },
+        {
+          "name": "CAUSE",
+          "label": "Cause"
+        },
+        {
+          "name": "LEAD_AGENCY",
+          "label": "Lead agency"
+        }
+      ],
+      "suggestedMinScale": 250000,
+      "serviceMinScale": 0,
+      "attribution": "© State of Victoria (DEECA Forest Fire Management Victoria; CFA)",
+      "licence": "Not stated in service metadata (Victorian Government open data is generally CC BY 4.0 - confirm before reuse)",
+      "cors": "https://chrislandvogt.github.io",
+      "definitionExpression": "FIRETYPE = 'Bushfire'",
+      "hiddenFields": [
+        "METHOD_COMMENTS"
+      ],
+      "supportsPbf": false,
+      "verifiedSeconds": {
+        "metadata": 0.2,
+        "count": 0.4
+      },
+      "notes": "628k bushfire polygons (716k incl. planned burns: FIRETYPE 'Burn'). SEASON ranges 1903-2025. 10.81 server, no PBF; ~0.5 s per query. Filter by SEASON (e.g. SEASON = 2009 for Black Saturday) for a cleaner map. METHOD_COMMENTS is free text and is hidden as a precaution."
+    },
+    {
+      "id": "vic-incidents-live",
+      "title": "Current bushfire incidents (DEECA / CFA, live)",
+      "theme": "hazards",
+      "keywords": [
+        "live",
+        "incident",
+        "current fires",
+        "emergency",
+        "bushfire",
+        "fire now",
+        "warnings"
+      ],
+      "coverage": "Victoria",
+      "url": "https://emap.ffm.vic.gov.au/arcgis/rest/services/ext_incidents_public/MapServer/0",
+      "type": "feature",
+      "geometryType": "point",
+      "featureCount": 4,
+      "maxRecordCount": 1000,
+      "displayField": "NAME",
+      "popupFields": [
+        {
+          "name": "NAME",
+          "label": "Incident"
+        },
+        {
+          "name": "Type",
+          "label": "Type"
+        },
+        {
+          "name": "Status",
+          "label": "Status"
+        },
+        {
+          "name": "Location",
+          "label": "Location"
+        },
+        {
+          "name": "INC_DATE_TIME",
+          "label": "Started"
+        },
+        {
+          "name": "Agency",
+          "label": "Agency"
+        }
+      ],
+      "suggestedMinScale": 0,
+      "serviceMinScale": 0,
+      "attribution": "© State of Victoria (DEECA Forest Fire Management Victoria; CFA)",
+      "licence": "Not stated in service metadata (Victorian Government open data is generally CC BY 4.0 - confirm before reuse)",
+      "cors": "https://chrislandvogt.github.io",
+      "supportsPbf": false,
+      "verifiedSeconds": {
+        "metadata": 0.2,
+        "count": 0.1
+      },
+      "notes": "LIVE feed on DEECA's eMap server - count changes constantly (4 incidents at verification) and may be empty on the day. Not an official public API; stability unknown, so have a fallback (vic-fire-history). Sibling layers: /1 CFA other incidents, /2 SES incidents, /3 FRV incidents. Not a warnings feed - VicEmergency remains the authoritative source."
+    }
+  ],
+  "excluded": [
+    {
+      "title": "NSW Spatial Services Features of Interest / portal services",
+      "url": "https://portal.spatial.nsw.gov.au/server/rest/services",
+      "reason": "Service directory did not respond within 60-90 s from the test machine (two attempts). Not usable on stage."
+    },
+    {
+      "title": "NSW Spatial Services LGA boundaries",
+      "url": "https://maps.six.nsw.gov.au/arcgis/rest/services/public/NSW_Administrative_Boundaries/MapServer/1",
+      "reason": "Works anonymously with CORS *, but the 10.51 server has no PBF/quantization, so a FeatureLayer pulls full-resolution geometry (~2.3 MB for 5 LGAs). Use abs-lga-2021 instead (or load this as a MapImageLayer sublayer)."
+    },
+    {
+      "title": "NSW Spatial Services suburbs",
+      "url": "https://maps.six.nsw.gov.au/arcgis/rest/services/public/NSW_Administrative_Boundaries/MapServer/0",
+      "reason": "Works (CORS *, 4,607 features, has postcode) but omitted as a duplicate of abs-suburbs-2021; no PBF support."
+    },
+    {
+      "title": "DA tracking (duplicate service)",
+      "url": "https://mapprod3.environment.nsw.gov.au/arcgis/rest/services/Planning/DA_Tracking/MapServer/0",
+      "reason": "Works (CORS *) but duplicates nsw-development-applications with the same 2023-dated data."
+    },
+    {
+      "title": "Greater Sydney canopy cover 2024 (raster)",
+      "url": "https://mapprod2.environment.nsw.gov.au/arcgis/rest/services/UHGC/Greater_Syd_Tree_Canopy_Cover_2024/MapServer",
+      "reason": "Works as a map-image export (CORS echoes origin) but is a raster with no attributes or popups; omitted in favour of sydney-tree-canopy-2022."
+    },
+    {
+      "title": "Roadworks and road closures (RADAR, national)",
+      "url": "https://spatial.infrastructure.gov.au/server/rest/services/Hosted/RADAR_Curated_Prod_roadworks/FeatureServer/0",
+      "reason": "Works (CORS echoes origin, 342k records) but mixes historical and current records with inconsistent status values by state. If needed, use definitionExpression \"state = 'NSW' AND status = 'Open'\" (~10k). Omitted to keep the catalogue at 25-ish solid entries."
+    },
+    {
+      "title": "Bus stops (NSW)",
+      "url": null,
+      "reason": "No public ArcGIS REST bus stop layer for NSW found in ArcGIS Online searches or on NSW Government servers. Only regional bus routes are included."
+    },
+    {
+      "title": "Traffic counts / volumes (NSW)",
+      "url": "https://services-ap1.arcgis.com/4TNjTqjusZrfpdYy/arcgis/rest/services/NSW_Traffic_Volume/FeatureServer",
+      "reason": "Only third-party copies found (consultancy account), not an authoritative TfNSW ArcGIS REST source. Not verified or included."
+    },
+    {
+      "title": "Urban heat island copies on university accounts",
+      "url": "https://services3.arcgis.com/TUZOXGJ0VXTtmQu3/arcgis/rest/services",
+      "reason": "Student/research copies of SEED data; authoritative NSW DPHI services are used instead."
+    },
+    {
+      "title": "City of Sydney EV charging bays",
+      "url": "https://services1.arcgis.com/cNVyNtjGVZybOQWZ/arcgis/rest/services/Electric_vehicle_charging_bays/FeatureServer/0",
+      "reason": "Works (CORS *), but only 59 council-operated bays in one LGA; the NSW-wide EV layers are more useful."
+    },
+    {
+      "title": "Regional NSW bus routes (TfNSW GTFS)",
+      "url": "https://services6.arcgis.com/LHYr6B7cFUs40aCx/arcgis/rest/services/TRA_GTFS_BusCoachNetworks_3857/FeatureServer/0",
+      "reason": "Transport for NSW staff account; item terms say not intended for third-party use. Left out by decision on 17 Nov 2026."
+    },
+    {
+      "title": "EV fast charging stations (above 50 kW, NSW)",
+      "url": "https://services6.arcgis.com/LHYr6B7cFUs40aCx/arcgis/rest/services/INF_EVChargingStations_3857/FeatureServer/1",
+      "reason": "Transport for NSW staff account; item terms say not intended for third-party use. Left out by decision on 17 Nov 2026."
+    },
+    {
+      "title": "VicRoads Maps org layers (regional bus/train/coach stops and routes, Traffic_Volume, VIC_Flood_Overlay, Bicycle_infrastructure, etc.)",
+      "url": "https://services2.arcgis.com/18ajPSI0b3ppsmMt/arcgis/rest/services",
+      "reason": "Work anonymously, but the items checked (Regional_Bus_Stops, Traffic_Volume) are owned by a named staff account (tayebeh.saghapour_vicroadsmaps) with no licence stated. Excluded under the staff/personal-account rule; DTP's networkdata_victransport equivalents are used instead."
+    },
+    {
+      "title": "Victorian road crash data copies on personal/student/consultancy accounts",
+      "url": "https://www.arcgis.com/sharing/rest/search?q=Victorian%20Road%20Crash%20Data",
+      "reason": "Copies owned by university, student and consultancy accounts (e.g. s4250047_UQmaps, jason.thompson_UOM, dradiceski_servicestream, darkoradiceski_lendlease). The official DTP layer (vic-road-crashes) is used."
+    },
+    {
+      "title": "Metro bus stops on an Esri Australia staff account (bus_stops_metro)",
+      "url": "https://services1.arcgis.com/vHnIGBHHqDR6y0CR/arcgis/rest/services/bus_stops_metro/FeatureServer",
+      "reason": "Staff account (kmorrish_esriau). Not verified; vic-pt-stops covers metro bus stops."
+    },
+    {
+      "title": "Vicmap-derived copies on university accounts (planning zones, crown land tenure)",
+      "url": "https://services.arcgis.com/1G2EoGF80ChC3Y1o/arcgis/rest/services",
+      "reason": "Student copies (llia0029_monashuniversity). The official Vicmap_Prod services are used."
+    },
+    {
+      "title": "Native vegetation / Ecological Vegetation Classes (NV2005, 1750 EVC)",
+      "url": "https://tiles.arcgis.com/tiles/bhpkCkUG1RNSYxqM/arcgis/rest/services/REF_NV2005_EVC/MapServer",
+      "reason": "No official DEECA ArcGIS REST service found anonymously. Only copies exist (Goulburn Broken CMA tile copy; personal accounts Shani.Blyth and MSCESRI). Not verified or included - gap."
+    },
+    {
+      "title": "Victoria fire history copy (Brimbank City Council)",
+      "url": "https://services7.arcgis.com/fVJQ0uhT9L4zp35f/arcgis/rest/services/Victoria_Fire_History_WFL1/FeatureServer",
+      "reason": "Council copy of DEECA data; the DEECA source (vic-fire-history) is used."
+    },
+    {
+      "title": "VicPlan fire history (plan-gis)",
+      "url": "https://plan-gis.mapshare.vic.gov.au/arcgis/rest/services/Planning/Fire_History/MapServer/0",
+      "reason": "Metadata and CORS fine, but where=1=1 returned a count of 0 - the layer appears empty or filtered. vic-fire-history (DEECA eMap) is used instead."
+    },
+    {
+      "title": "MapShareVic enterprise folders (VicPlan, Vicmap, features, Demography)",
+      "url": "https://enterprise.mapshare.vic.gov.au/server/rest/services",
+      "reason": "Folders return 'Token Required' (error 499). Not usable anonymously."
+    },
+    {
+      "title": "Department of Education school locations",
+      "url": null,
+      "reason": "No Department of Education ArcGIS REST service found in ArcGIS Online searches. Schools come from Vicmap Features of Interest (no government/non-government sector field)."
+    },
+    {
+      "title": "VicEmergency warnings / incident feed",
+      "url": null,
+      "reason": "No VicEmergency/EMV ArcGIS REST service found. The DEECA eMap incidents layer (vic-incidents-live) is the only live ArcGIS REST source found."
+    },
+    {
+      "title": "Vicmap Vegetation Tree Urban (individual urban trees)",
+      "url": "https://services-ap1.arcgis.com/P744lA0wf4LlBZ84/arcgis/rest/services/Vicmap_Vegetation_Tree_Urban/FeatureServer/0",
+      "reason": "Works (CORS *, PBF) but holds 11.3M tree points; only usable below about 1:5,000. Omitted; vic-tree-cover-2018-meshblock gives a better overview."
+    },
+    {
+      "title": "Vicmap Property (property polygons)",
+      "url": "https://services-ap1.arcgis.com/P744lA0wf4LlBZ84/arcgis/rest/services/Vicmap_Property/FeatureServer/0",
+      "reason": "Works (CORS *, 1.78M polygons) but duplicates vic-parcels for a demo; no owner fields."
+    },
+    {
+      "title": "Vicmap Transport road network",
+      "url": "https://services-ap1.arcgis.com/P744lA0wf4LlBZ84/arcgis/rest/services/Vicmap_Transport/FeatureServer/1",
+      "reason": "Metadata and CORS fine (PBF), but very wide schema and dense; omitted in favour of national-major-roads plus vic-traffic-volume. Usable with class_code filters and minScale <= 50000 if needed."
+    },
+    {
+      "title": "City of Melbourne urban heat and tree canopy",
+      "url": "https://services1.arcgis.com/KGdHCCUjGBpOPPac/arcgis/rest/services/Urban_Heat_City_of_Melbourne_WFL1/FeatureServer",
+      "reason": "Official City of Melbourne account, but covers one LGA only; not verified. The metro-wide Cooling and Greening Melbourne layers are used."
+    }
+  ],
+  "corsRecheckedAt": "2026-11-19"
+}
