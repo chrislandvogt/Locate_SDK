@@ -151,11 +151,22 @@ Never use any of these:
 
 Never use any government logo, coat of arms or typeface (NSW or Victorian): this is an Esri Australia demo, not a government product. If a sentence in the interface could appear in any app, rewrite it for this persona or delete it.
 
+## Location services
+
+The app has an **ArcGIS Location Platform key**, on the public site as well as the presenter's laptop. It comes from `runtime-config.js` (the Pages secret, or `scripts/serve.mjs` locally). Never write it anywhere yourself. With it:
+
+- **Basemaps** are ArcGIS vector styles, and **search** uses the geocoding service. Nothing to configure.
+- **`features.directions`**: routes between places, using the SDK's directions component. Turn it on when people ask for routes, travel paths or "how do I get to". Config: `{ maxStops: 5 }`.
+- **`features.nearby`**: finds places (cafes, pharmacies, petrol stations…) near the middle of the map, using the Places service. Turn it on for "what's near me", "closest X" or "find a Y". Config: `{ searches: [3 or 4 short words the room used], radius: 1500 }`.
+- Both are tested and ready: switch them on in config rather than writing new modules. They don't appear if there's no key.
+- Any other location service (service areas, elevation, demographics) needs a new feature module. It counts as your one new module, so only write one if it's the room's top must-do.
+- In the plan, say which location services the build uses, in plain words ("directions", "places near you"), not product names.
+
 ## Presenter-only AI chat
 
 The AI chat runs **only on the presenter's laptop**, so the room sees it on the big screen. The public Pages site never has it: no key or model address is ever deployed, and `check.mjs` fails the deploy if one appears.
 
-- How it works: `scripts/serve.mjs` (the preview on http://localhost:5180) holds the key from `live-build/.env` on the server side and answers on `/__ai/chat`. The local `app/runtime-config.js` points the assistant there. On the public site there's no endpoint, so the chat panel, its button and "Explain this" don't appear at all.
+- How it works: `scripts/serve.mjs` (the preview on http://localhost:5180) holds the key from `live-build/.env` on the server side and answers on `/__ai/chat`. The same server writes the local `runtime-config.js` on the fly, pointing the assistant there. On the public site there's no endpoint, so the chat panel, its button and "Explain this" don't appear at all.
 - Configure `features.assistant`: `modes` (`filter`, `explain`) and 3 or 4 `suggestions` written from the room's AI answers and catalogue fields that exist, e.g. "Show council areas in Victoria". Pick suggestions that will work first time in front of the room.
 - Don't change how it gets its key or endpoint, its rate limits or its SQL validation. Never put a key in `app/`.
 - In the plan, say in one line that the AI chat is on the presenter's screen, and that people's phones get the map without the chat.

@@ -84,6 +84,9 @@ export default {
     },
     share: true, // copy a link to the current view
     locate: true, // "near me" button
+    // Location services on the ArcGIS Location Platform key (CLAUDE.md, "Location services"). Off unless the room needs them.
+    directions: false, // { maxStops: 5 }: routes between places
+    nearby: false, // { searches: ["Cafe", "Pharmacy"], radius: 1500 }: places around the middle of the map
   },
 
   // Shown in the "From the room" panel. Copied from input/submissions.json (approved answers only).

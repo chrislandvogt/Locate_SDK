@@ -62,6 +62,19 @@ async function aiChat(req, res) {
     return reply(status, { error: "model unavailable" });
   }
 }
+// The presenter's runtime config, built here rather than kept as a file in app/:
+//  - arcgisApiKey: the ArcGIS Location Platform key from live-build/.env (ARCGIS_API_KEY), for basemap
+//    styles, search, directions and places. The public site gets the same key from the Pages secret.
+//  - foundry: points the assistant at this server's /__ai/chat proxy, only when the Anthropic key is set.
+function runtimeConfig() {
+  return `window.RUNTIME_CONFIG = ${JSON.stringify({
+    arcgisApiKey: env.ARCGIS_API_KEY || "",
+    foundry: claude
+      ? { url: "/__ai/chat", key: "local-proxy", model: "", auth: "api-key", label: AI_MODEL === "claude-opus-5-5" ? "Claude Opus 5.5" : AI_MODEL }
+      : { url: "", key: "", model: "", auth: "api-key", label: "Assistant" },
+  })};\n`;
+}
+
 const MIME = { ".html": "text/html; charset=utf-8", ".js": "text/javascript; charset=utf-8", ".css": "text/css; charset=utf-8", ".json": "application/json", ".svg": "image/svg+xml", ".png": "image/png", ".ico": "image/x-icon" };
 
 // Local-only mock of a chat-completions endpoint, for testing the assistant without a key.
@@ -82,6 +95,10 @@ async function mockChat(req, res) {
 
 http.createServer((req, res) => {
   const p = decodeURIComponent(new URL(req.url, "http://x").pathname);
+  if (p === "/runtime-config.js") {
+    res.writeHead(200, { "content-type": "text/javascript; charset=utf-8", "cache-control": "no-store" }).end(runtimeConfig());
+    return;
+  }
   if (p === "/__mock/chat" && req.method === "POST") return void mockChat(req, res);
   if (p === "/__ai/chat" && req.method === "POST") {
     if (!claude) { res.writeHead(503, { "content-type": "application/json" }).end('{"error":"AI chat not configured"}'); return; }
@@ -96,4 +113,5 @@ http.createServer((req, res) => {
 }).listen(port, "127.0.0.1", () => {
   console.log(`App on http://localhost:${port}`);
   console.log(`  AI chat: ${claude ? `${AI_MODEL} via /__ai/chat (presenter laptop only)` : "off (no ANTHROPIC_API_KEY in live-build/.env)"}`);
+  console.log(`  ArcGIS key: ${env.ARCGIS_API_KEY ? "set (basemap styles, search, directions, places)" : "not set (keyless tiles; no directions or places)"}`);
 });
