@@ -13,7 +13,7 @@ Before anything else:
 
 Then:
 - The `brief` field is the wall's rolling summary, written by a smaller model. Treat it as a hint only. Do your own synthesis from `answers`, `focus`, `roles` and `top`.
-- Name the persona first, then synthesise, then present the plan with success criteria, and **stop and wait for approval**.
-- After approval: build, then check by following CLAUDE.md step 6 exactly. Open popups from the console rather than by clicking the map, ignore only the two known scaffold 404s, and check at phone width as well.
+- Name the persona first, then synthesise, then present the plan with success criteria. **Don't wait for approval:** go straight on to build, check and ship without asking anything.
+- Build, then check by following CLAUDE.md step 6 exactly. Open popups from the console rather than by clicking the map, ignore only the two known scaffold 404s, and check at phone width as well.
 
 Keep every message short: the room is reading it on the big screen.

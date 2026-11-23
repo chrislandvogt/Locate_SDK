@@ -26,12 +26,12 @@ The audience reads your messages on the big screen. Be clear, brief and calm. Co
    - the look
    - what the AI chat should do (presenter's screen only: see below)
    - what you **won't** build, and why
-4. **Plan, with success criteria, and wait for approval.** Present a plan of 8 lines or fewer, starting with the persona, with 3 to 5 success criteria a person can check by looking at the app. For example:
+4. **Plan, with success criteria, then keep going.** Present a plan of 8 lines or fewer, starting with the persona, with 3 to 5 success criteria a person can check by looking at the app. For example:
    - "Opens on Melbourne's west with the zoning layer on"
    - "Clicking a suburb reads as a sentence that answers the planner's question"
    - "Labels are readable at 1:50k and don't collide"
 
-   Stop and wait for the presenter to approve.
+   **Don't stop for approval.** The presenter reads the plan out while you build. Go straight on to step 5, and don't ask questions at any later step either. If you have to choose, follow these rules and simplify.
 5. **Build.** Change only:
    - `app/config.js`: title, subtitle, theme, basemap, extent, layers (with renderers and popups), features, room
    - `app/features/*.js`: a new feature module, only if a must-do can't be done by config. At most one new module, under 120 lines.
