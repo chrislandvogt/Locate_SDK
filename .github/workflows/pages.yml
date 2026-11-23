@@ -14,12 +14,11 @@ concurrency:
   group: pages
   cancel-in-progress: true
 
+# Two jobs, as in GitHub's starter workflow: deploying in the same job straight after the upload
+# intermittently fails with 'No artifacts named "github-pages"' (actions/deploy-pages known issue).
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v5
 
@@ -28,7 +27,8 @@ jobs:
           node-version: 22
 
       # Keys come from repository secrets and exist only in the deployed site, never in git.
-      # The Foundry key is a CAPPED workshop key, rotated straight after the session.
+      # ARCGIS_API_KEY: the Location Platform key (basemaps, search, directions, places).
+      # FOUNDRY_*: must stay unset. The AI chat is presenter-only, and check.mjs fails if they're set.
       - name: Write runtime config
         env:
           ARCGIS_API_KEY: ${{ secrets.ARCGIS_API_KEY }}
@@ -48,5 +48,12 @@ jobs:
         with:
           path: app
 
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
       - id: deployment
         uses: actions/deploy-pages@v4
