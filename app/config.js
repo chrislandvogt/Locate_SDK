@@ -1,100 +1,167 @@
-// App configuration. THIS is the file the live build edits, together with features/*.js.
-// Every layer id must exist in catalogue.json. See ../CLAUDE.md for the rules, especially "Design".
-//
-// The values below are a WORKED EXAMPLE of the standard expected on stage: one persona, a quiet
-// context layer, a clean Arcade label, and a popup that answers a question in a sentence.
+// App configuration. Live build: Melbourne's inner west, where people live and what's nearby.
+// Every layer id must exist in catalogue.json. See ../CLAUDE.md, especially "Design".
 
 export default {
-  title: "Starter map",
-  subtitle: "Scaffold before the live build",
+  title: "Inner west, up close",
+  subtitle: "People, parks, places",
 
-  // Who this is for. Every choice below should make sense to this person (CLAUDE.md, step 2).
   persona: {
-    who: "A council strategic planner",
-    context: "At a desk, preparing a briefing for councillors",
-    job: "Compare council areas across the state at a glance",
+    who: "A council GIS analyst in Melbourne's inner west",
+    context: "At a desk, checking a neighbourhood before a site visit",
+    job: "See where people live, then the cafes, parks and stations nearby",
+    success: "Can name the densest neighbourhood and its closest cafes and station in two minutes",
   },
 
-  theme: "light", // "light" (plain white, the default) | "dark"
-  basemap: "gray", // "gray" (follows theme) | "imagery" | "topo" | "streets"
-  basemapLabels: false, // our council labels name the places; basemap names would double them up
+  theme: "light",
+  basemap: "gray",
+  basemapLabels: false, // our area labels name the suburbs; basemap names would double them up
 
-  // Where the map opens: [xmin, ymin, xmax, ymax] in lon/lat.
-  extent: [140.9, -39.2, 150.0, -33.9], // Victoria
+  extent: [144.84, -37.85, 144.99, -37.77], // Footscray to the CBD
 
-  // Layers, drawn bottom to top. "id" refers to catalogue.json.
   layers: [
     {
-      id: "abs-lga-2021",
-      title: "Council areas",
-      // Context layer: thin outline, no fill, so whatever goes on top can carry the colour.
+      id: "abs-sa2-population-2025",
+      title: "People per km² (ABS 2025)",
+      where: "gccsa_name_2021 = 'Greater Melbourne'",
+      opacity: 0.55,
+      blendMode: "multiply",
       renderer: {
-        type: "simple",
-        symbol: { type: "simple-fill", color: [0, 0, 0, 0], outline: { color: [102, 102, 102, 0.6], width: 0.75 } },
+        type: "class-breaks",
+        field: "pop_density_2025_people_per_km2",
+        classBreakInfos: [
+          { minValue: 0, maxValue: 1000, label: "Under 1,000", symbol: { type: "simple-fill", color: "#e6eef9", outline: { color: [255, 255, 255, 0.8], width: 0.5 } } },
+          { minValue: 1000, maxValue: 2500, label: "1,000 to 2,500", symbol: { type: "simple-fill", color: "#b3cbee", outline: { color: [255, 255, 255, 0.8], width: 0.5 } } },
+          { minValue: 2500, maxValue: 4000, label: "2,500 to 4,000", symbol: { type: "simple-fill", color: "#6d9be0", outline: { color: [255, 255, 255, 0.8], width: 0.5 } } },
+          { minValue: 4000, maxValue: 6000, label: "4,000 to 6,000", symbol: { type: "simple-fill", color: "#2f6fd0", outline: { color: [255, 255, 255, 0.8], width: 0.5 } } },
+          { minValue: 6000, maxValue: 1000000, label: "Over 6,000", symbol: { type: "simple-fill", color: "#0052c2", outline: { color: [255, 255, 255, 0.8], width: 0.5 } } },
+        ],
       },
-      // ABS also lists non-places ("No usual address", "Migratory - Offshore - Shipping", "Unincorporated Vic"): leave them out.
-      where: "lga_name_2021 NOT LIKE 'No usual address%' AND lga_name_2021 NOT LIKE 'Migratory%' AND lga_name_2021 NOT LIKE 'Unincorporated%'",
-      // "Bayside (NSW)" → "Bayside". Only once there's room to read it.
       labels: {
         expression: `
-          var n = $feature.lga_name_2021;
+          var n = $feature.sa2_name_2021;
           var i = Find(" (", n);
           return IIf(i > -1, Left(n, i), n);`,
         size: 10,
-        minScale: 2500000,
+        minScale: 80000,
+      },
+      popup: {
+        title: `$feature.sa2_name_2021`,
+        arcade: `
+          var name = $feature.sa2_name_2021;
+          var pop = $feature.erp_2025;
+          var dens = $feature.pop_density_2025_people_per_km2;
+          var chg = $feature.erp_change_per_cent_2024_25;
+          if (IsEmpty(pop) || IsEmpty(dens)) {
+            return { type: "text", text: "<p>No population estimate for " + name + ".</p>" };
+          }
+          // Mean density of the 361 Greater Melbourne SA2s in this layer (outStatistics avg, 24 Nov 2026).
+          var avg = 2692;
+          var ratio = dens / avg;
+          var cmp = IIf(ratio >= 1.1, Text(Round(ratio, 1), "#,##0.0") + " times the Greater Melbourne average",
+                    IIf(ratio <= 0.9, "below the Greater Melbourne average of 2,692", "about the Greater Melbourne average"));
+          var t = "<p>About " + Text(Round(pop, -1), "#,##0") + " people live in " + name + ", or <b>" +
+                  Text(Round(dens, 0), "#,##0") + " per km²</b>: " + cmp + ".</p>";
+          if (!IsEmpty(chg)) {
+            t += "<p>" + IIf(chg >= 0, "Grew ", "Shrank ") + Text(Abs(Round(chg, 1)), "#,##0.0") + "% in 2024–25. Open Nearby to find cafes and places to eat here.</p>";
+          }
+          return { type: "text", text: t };`,
+      },
+    },
+    {
+      id: "vic-parks-reserves",
+      title: "Parks and gardens (Vicmap)",
+      minScale: 150000,
+      opacity: 0.6,
+      renderer: {
+        type: "simple",
+        label: "Park or garden",
+        symbol: { type: "simple-fill", color: [92, 160, 92, 0.45], outline: { color: [60, 120, 60, 0.6], width: 0.5 } },
+      },
+      labels: {
+        expression: `Proper($feature.name)`,
+        size: 9,
+        color: [45, 95, 45, 1],
+        minScale: 20000,
+      },
+      popup: {
+        title: `IIf(IsEmpty($feature.name), "Park", Proper($feature.name))`,
+        arcade: `
+          var n = IIf(IsEmpty($feature.name), "This park", Proper($feature.name));
+          var t = $feature.feature_subtype;
+          var p = $feature.parent_name;
+          var s = n + " is a " + IIf(IsEmpty(t), "park", Lower(t));
+          if (!IsEmpty(p)) { s += ", part of " + Proper(p); }
+          return { type: "text", text: "<p>" + s + ".</p>" };`,
+      },
+    },
+    {
+      id: "vic-pt-stops",
+      title: "Train stations (DTP)",
+      where: "MODE = 'METRO TRAIN'",
+      minScale: 150000,
+      renderer: {
+        type: "simple",
+        label: "Metro train station",
+        symbol: { type: "simple-marker", style: "square", size: 7, color: "#e57200", outline: { color: [255, 255, 255, 1], width: 1 } },
+      },
+      labels: {
+        expression: `
+          var n = Proper($feature.STOP_NAME);
+          var i = Find(" Station", n);
+          return IIf(i > -1, Left(n, i), n);`,
+        size: 11,
+        weight: "bold",
+        placement: "above-center",
+        minScale: 40000,
       },
       popup: {
         title: `
-          var n = $feature.lga_name_2021;
-          var i = Find(" (", n);
-          return IIf(i > -1, Left(n, i), n);`,
-        // One sentence that answers "what is this place?", with the number that matters in bold.
+          var n = Proper($feature.STOP_NAME);
+          var i = Find(" Station", n);
+          return IIf(i > -1, Left(n, i), n) + " station";`,
         arcade: `
-          var n = $feature.lga_name_2021;
-          var i = Find(" (", n);
-          var name = IIf(i > -1, Left(n, i), n);
-          var area = $feature.area_albers_sqkm;
-          var state = $feature.state_name_2021;
-          if (IsEmpty(area)) {
-            return { type: "text", text: "<p>" + name + " is a council area in " + state + ".</p>" };
-          }
-          var areaText = IIf(area >= 100, Text(Round(area, 0), "#,###"), Text(area, "#,##0.0"));
-          // Comparisons help the planner: a familiar yardstick beats a raw number.
-          var melbourne = 9993;  // Greater Melbourne, km² (ABS GCCSA 2021)
-          var compare = IIf(area > melbourne,
-            ", bigger than all of Greater Melbourne",
-            IIf(area < 100, ", one of the smaller council areas", ""));
-          return { type: "text", text: "<p>" + name + " is a council area in " + state + ", covering <b>" + areaText + " km²</b>" + compare + ".</p>" };`,
+          var n = Proper($feature.STOP_NAME);
+          var i = Find(" Station", n);
+          n = IIf(i > -1, Left(n, i), n);
+          return { type: "text", text: "<p>" + n + " is a metro train station. Use Nearby to see cafes within walking distance.</p>" };`,
       },
     },
   ],
 
-  // Features, in the order their panels appear. Each one is a module in features/.
   features: {
-    layers: true, // layer list and legend
-    search: true, // address and place search
-    filter: { layer: "abs-lga-2021", field: "state_name_2021", label: "State" },
-    room: true, // "From the room": what the audience asked for
-    // Presenter-only AI chat: appears only on the presenter's laptop (local preview server holds the key).
-    // The public site never shows it. See CLAUDE.md, "Presenter-only AI chat".
+    nearby: { searches: ["Cafe", "Restaurant", "Pub", "Ice cream"], radius: 1500 },
+    search: true,
+    layers: true,
+    filter: { layer: "abs-sa2-population-2025", field: "sa3_name_2021", label: "District" },
+    room: true,
     assistant: {
       enabled: true,
       modes: ["filter", "explain"],
-      suggestions: ["Show council areas in Victoria", "Which councils are shires?"],
+      suggestions: [
+        "Show areas with more than 6,000 people per km²",
+        "Which areas grew more than 5% in 2024–25?",
+        "Show the Maribyrnong district",
+      ],
     },
-    share: true, // copy a link to the current view
-    locate: true, // "near me" button
-    // Location services on the ArcGIS Location Platform key (CLAUDE.md, "Location services"). Off unless the room needs them.
-    directions: false, // { maxStops: 5 }: routes between places
-    nearby: false, // { searches: ["Cafe", "Pharmacy"], radius: 1500 }: places around the middle of the map
+    share: true,
+    locate: true,
+    directions: false,
   },
 
-  // Shown in the "From the room" panel. Copied from input/submissions.json (approved answers only).
   room: {
-    // Placeholder values so the scaffold shows every panel. Replaced by the live build.
-    responses: 3,
-    focus: { field: 1, community: 1, planning: 1 },
-    questions: ["Which council areas are largest?"],
-    notInThisBuild: ["Offline mode: needs a native app or service worker, too big for this session"],
+    responses: 37,
+    focus: { field: 4, community: 0, planning: 30 },
+    questions: [
+      "Best cafes in the west",
+      "Where are cafes around here?",
+      "Highest density restaurant areas",
+      "How many people live here?",
+    ],
+    notInThisBuild: [
+      "Cafe ratings, reviews and prices: no ratings source in the catalogue",
+      "Rainfall, wind and weather: no Bureau of Meteorology layer in the catalogue",
+      "Evacuation centres and VicEmergency warnings: no public ArcGIS source",
+      "Vineyards, penguins and seals: outside this persona's job",
+    ],
   },
 };
